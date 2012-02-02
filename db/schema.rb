@@ -10,14 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120202070042) do
+ActiveRecord::Schema.define(:version => 20120202090113) do
 
   create_table "matches", :force => true do |t|
-    t.integer  "winner"
-    t.integer  "loser"
+    t.integer  "winner_id"
+    t.integer  "loser_id"
     t.datetime "time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "winner_points"
+    t.integer  "loser_points"
   end
 
   create_table "players", :force => true do |t|

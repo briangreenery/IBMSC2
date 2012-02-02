@@ -54,3 +54,31 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+#player_table, #matches_table {
+  border-radius: 5px;
+}
+
+#matches_table, #player_table {  
+  border: 1px solid #9DC5F9;
+  background-color: #E3EDF4;
+}
+
+#matches_table td {
+  padding: 5px;
+}
+
+#player_div {
+  float: left;
+  margin-right: 10px;
+}
+
+.positive {
+  font-weight: bold;
+  color: green;
+}
+
+.negative {
+  font-weight: bold;
+  color: red;
+}

@@ -24,6 +24,7 @@ class MatchesController < ApplicationController
   # GET /matches/new
   # GET /matches/new.xml
   def new
+    @players = Player.all( :order => "name" )
     @match = Match.new
 
     respond_to do |format|
@@ -40,11 +41,26 @@ class MatchesController < ApplicationController
   # POST /matches
   # POST /matches.xml
   def create
-    @match = Match.new(params[:match])
+    winner = Player.find_by_id( params[:winner][:id] )
+    loser = Player.find_by_id( params[:loser][:id] )
+
+    rank_diff = winner.rank - loser.rank
+
+    winner_points = ( rank_diff < 0 ) ? ( 11 - rank_diff.abs ) : ( 10 + rank_diff.abs )
+    loser_points = -winner_points
+
+    winner.update_attributes( :points => winner.points + winner_points )
+    loser.update_attributes( :points => loser.points + loser_points )
+
+    @match = Match.new( :winner_id => params[:winner][:id],
+                        :loser_id => params[:loser][:id],
+                        :time => DateTime.now,
+                        :winner_points => winner_points,
+                        :loser_points => loser_points )
 
     respond_to do |format|
       if @match.save
-        format.html { redirect_to(@match, :notice => 'Match was successfully created.') }
+        format.html { redirect_to '/' }
         format.xml  { render :xml => @match, :status => :created, :location => @match }
       else
         format.html { render :action => "new" }

@@ -1,0 +1,45 @@
+<div id="player_div">
+<%= link_to "Add player", new_player_path %>
+<table id="player_table">
+  <tr>
+    <th>Rank</th>
+    <th>Player</th>
+    <th>Points</th>
+  </tr>
+  <% @players.each_with_index do |player, i| %>
+    <tr>
+      <td><%= @ranks[i] %>
+      <td><%= player.name %></td>
+      <td><%= player.points %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
+
+<div id="matches_div">
+<%= link_to "Record match", new_match_path %>
+<table id="matches_table">
+  <tr>
+    <th>Winner</th>
+    <th>Loser</th>
+    <th>Date</th>
+  </tr>
+  <% @matches.each do |match| %>
+    <tr>
+      <td>
+      <%= match.winner.name %>
+      <%= content_tag :span, :class => match.winner_points >= 0 ? "positive" : "negative" do %>
+        (<%= match.winner_points >= 0 ? "+" : "" %><%= match.winner_points %>)
+      <% end %>
+      </td>
+      <td>
+      <%= match.loser.name %>
+      <%= content_tag :span, :class => match.loser_points >= 0 ? "positive" : "negative" do %>
+        (<%= match.loser_points >= 0 ? "+" : "" %><%= match.loser_points %>)
+      <% end %>
+      </td>
+      <td><%= match.time.strftime( "%b %d" ) %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
