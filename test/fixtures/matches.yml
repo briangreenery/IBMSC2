@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  winner: 1
+  loser: 1
+  time: 2012-02-01 23:00:42
+
+two:
+  winner: 1
+  loser: 1
+  time: 2012-02-01 23:00:42
