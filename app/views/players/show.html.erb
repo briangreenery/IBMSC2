@@ -1,15 +1,30 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @player.name %>
+<p><b>Name:</b> <%= @player.name %></p>
+<p><b>Character code:</b> <%= @player.character_code %></p>
+<p><b>Points:</b> <%= @player.points %></p>
+
+<p><b>Match History:</b>
+<table id="matches_table">
+  <th>Date</th>
+  <th>Opponent</th>
+  <th>Result</th>
+
+  <% @matches.each do |match| %>
+  <tr>
+    <td><%= match[:time].strftime( "%b %d %H:%M" ) %></td>
+    <td><%= match[:opponent].name %></td>
+    <td>
+        <%= match[:win] ? 'Win' : 'Loss' %>
+      <%= content_tag :span, :class => match[:points] >= 0 ? "positive" : "negative" do %>
+        (<%= match[:points] >= 0 ? "+" : "" %><%= match[:points] %>)
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
 </p>
 
-<p>
-  <b>Points:</b>
-  <%= @player.points %>
-</p>
-
-
-<%= link_to 'Edit', edit_player_path(@player) %> |
-<%= link_to 'Back', players_path %>
+<%= link_to 'Back', '/' %>
+|
+<%= link_to 'Edit ' + @player.name, edit_player_path(@player) %>

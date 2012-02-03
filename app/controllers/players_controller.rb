@@ -15,6 +15,14 @@ class PlayersController < ApplicationController
   def show
     @player = Player.find(params[:id])
 
+    @matches = Array.new
+    Match.order( 'time DESC, id DESC ' ).where( 'winner_id = ? or loser_id = ?', @player.id, @player.id ).each do |match|
+      @matches.push( { :opponent => ( match.winner_id == @player.id ? match.loser : match.winner ),
+                      :win => ( match.winner_id == @player.id ),
+                      :time => match.time,
+                      :points => ( match.winner_id == @player.id ? match.winner_points : match.loser_points ) } )
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @player }
@@ -73,6 +81,7 @@ class PlayersController < ApplicationController
   # DELETE /players/1.xml
   def destroy
     @player = Player.find(params[:id])
+    Match.where( 'winner_id = ? or loser_id = ?', @player.id, @player.id ).destroy_all
     @player.destroy
 
     respond_to do |format|

@@ -59,13 +59,21 @@ div.field, div.actions {
   border-radius: 5px;
 }
 
-#matches_table, #player_table {  
+#matches_table, #player_table {
   border: 1px solid #9DC5F9;
   background-color: #E3EDF4;
 }
 
+#matches_table tr:nth-child(even), #player_table tr:nth-child(even) {
+  background-color: #f7fafc;
+}
+
 #matches_table td {
   padding: 5px;
+}
+
+#player_table td {
+  padding-right: 5px;
 }
 
 #player_div {

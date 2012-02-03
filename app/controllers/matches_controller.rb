@@ -51,7 +51,7 @@ class MatchesController < ApplicationController
     if winner_points < 0 then
       winner_points = 0
     end
-    
+
     loser_points = -winner_points
 
     winner.update_attributes( :points => winner.points + winner_points )
@@ -94,10 +94,12 @@ class MatchesController < ApplicationController
   # DELETE /matches/1.xml
   def destroy
     @match = Match.find(params[:id])
+    @match.winner.update_attributes( :points => @match.winner.points - @match.winner_points )
+    @match.loser.update_attributes( :points => @match.loser.points - @match.loser_points )
     @match.destroy
 
     respond_to do |format|
-      format.html { redirect_to(matches_url) }
+      format.html { redirect_to '/' }
       format.xml  { head :ok }
     end
   end

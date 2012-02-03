@@ -12,8 +12,8 @@
 
 <% @matches.each do |match| %>
   <tr>
-    <td><%= match.winner %></td>
-    <td><%= match.loser %></td>
+    <td><%= match.winner.name %></td>
+    <td><%= match.loser.name %></td>
     <td><%= match.time %></td>
     <td><%= link_to 'Show', match %></td>
     <td><%= link_to 'Edit', edit_match_path(match) %></td>

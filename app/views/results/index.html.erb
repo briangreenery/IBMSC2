@@ -7,10 +7,10 @@
     <th>Points</th>
     <th>Games</th>
   </tr>
-  <% @players.each_with_index do |player, i| %>
+  <% @players.each do |player| %>
     <tr>
       <td><%= player.rank %>
-      <td><%= player.name_with_code %></td>
+      <td><%= link_to player.name_with_code, player_path( player ) %></td>
       <td><%= player.points %></td>
       <td><%= player.games_played %></td>
     </tr>
@@ -25,10 +25,11 @@
     <th>Date</th>
     <th>Winner</th>
     <th>Loser</th>
+    <th></th>
   </tr>
   <% @matches.each do |match| %>
     <tr>
-      <td><%= match.time.strftime( "%b %d" ) %></td>
+      <td><%= match.time.strftime( "%b %d %H:%M" ) %></td>
       <td>
       <%= match.winner.name %>
       <%= content_tag :span, :class => match.winner_points >= 0 ? "positive" : "negative" do %>
@@ -41,6 +42,7 @@
         (<%= match.loser_points >= 0 ? "+" : "" %><%= match.loser_points %>)
       <% end %>
       </td>
+      <td><%= link_to 'delete', match, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
