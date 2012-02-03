@@ -29,7 +29,7 @@
   </tr>
   <% @matches.each do |match| %>
     <tr>
-      <td><%= match.time.strftime( "%b %d %H:%M" ) %></td>
+      <td><%= match.time.to_time.getlocal.strftime( "%b %d %l:%M %p" ) %></td>
       <td>
       <%= match.winner.name %>
       <%= content_tag :span, :class => match.winner_points >= 0 ? "positive" : "negative" do %>

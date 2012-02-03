@@ -12,7 +12,7 @@
 
   <% @matches.each do |match| %>
   <tr>
-    <td><%= match[:time].strftime( "%b %d %H:%M" ) %></td>
+    <td><%= match[:time].to_time.getlocal.strftime( "%b %d %l:%M %p" ) %></td>
     <td><%= match[:opponent].name %></td>
     <td>
         <%= match[:win] ? 'Win' : 'Loss' %>
