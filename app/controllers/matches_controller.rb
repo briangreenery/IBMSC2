@@ -52,6 +52,10 @@ class MatchesController < ApplicationController
       winner_points = 0
     end
 
+    if winner_points > 20 then
+      winner_points = 20
+    end
+
     loser_points = -winner_points
 
     winner.update_attributes( :points => winner.points + winner_points )
