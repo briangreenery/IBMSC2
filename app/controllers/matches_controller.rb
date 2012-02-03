@@ -47,6 +47,11 @@ class MatchesController < ApplicationController
     rank_diff = winner.rank - loser.rank
 
     winner_points = ( rank_diff < 0 ) ? ( 11 - rank_diff.abs ) : ( 10 + rank_diff.abs )
+
+    if winner_points < 0 then
+      winner_points = 0
+    end
+    
     loser_points = -winner_points
 
     winner.update_attributes( :points => winner.points + winner_points )
