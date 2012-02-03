@@ -24,7 +24,7 @@ class MatchesController < ApplicationController
   # GET /matches/new
   # GET /matches/new.xml
   def new
-    @players = Player.all( :order => "name" )
+    @players = Player.all( :order => "lower( name )" )
     @match = Match.new
 
     respond_to do |format|
