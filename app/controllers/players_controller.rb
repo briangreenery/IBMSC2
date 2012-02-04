@@ -81,7 +81,6 @@ class PlayersController < ApplicationController
   # DELETE /players/1.xml
   def destroy
     @player = Player.find(params[:id])
-    Match.where( 'winner_id = ? or loser_id = ?', @player.id, @player.id ).destroy_all
     @player.destroy
 
     respond_to do |format|

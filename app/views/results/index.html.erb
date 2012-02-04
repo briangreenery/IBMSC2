@@ -12,7 +12,7 @@
       <td><%= player.rank %>
       <td><%= link_to player.name_with_code, player_path( player ) %></td>
       <td><%= player.points %></td>
-      <td><%= player.games_won %>-<%= player.games_lost %></td>
+      <td><%= player.games_won.size %>-<%= player.games_lost.size %></td>
     </tr>
   <% end %>
 </table>
