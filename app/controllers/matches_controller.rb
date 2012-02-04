@@ -98,8 +98,6 @@ class MatchesController < ApplicationController
   # DELETE /matches/1.xml
   def destroy
     @match = Match.find(params[:id])
-    @match.winner.update_attributes( :points => @match.winner.points - @match.winner_points )
-    @match.loser.update_attributes( :points => @match.loser.points - @match.loser_points )
     @match.destroy
 
     respond_to do |format|
