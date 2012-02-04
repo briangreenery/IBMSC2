@@ -5,14 +5,14 @@
     <th>Rank</th>
     <th>Player</th>
     <th>Points</th>
-    <th>Games</th>
+    <th>Record</th>
   </tr>
   <% @players.each do |player| %>
     <tr>
       <td><%= player.rank %>
       <td><%= link_to player.name_with_code, player_path( player ) %></td>
       <td><%= player.points %></td>
-      <td><%= player.games_played %></td>
+      <td><%= player.games_won %>-<%= player.games_lost %></td>
     </tr>
   <% end %>
 </table>

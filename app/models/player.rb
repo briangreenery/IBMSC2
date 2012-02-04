@@ -8,8 +8,12 @@ class Player < ActiveRecord::Base
     end
   end
 
-  def games_played
-    Match.count( :conditions => ['winner_id = ? or loser_id = ?', id, id] )
+  def games_won
+    Match.count( :conditions => ['winner_id = ?', id] )
+  end
+
+  def games_lost
+    Match.count( :conditions => ['loser_id = ?', id] )
   end
 
 	def rank
