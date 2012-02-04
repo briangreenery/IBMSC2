@@ -24,7 +24,6 @@ class MatchesController < ApplicationController
   # GET /matches/new
   # GET /matches/new.xml
   def new
-    @players = Player.all( :order => "lower( name )" )
     @match = Match.new
 
     respond_to do |format|
@@ -41,8 +40,7 @@ class MatchesController < ApplicationController
   # POST /matches
   # POST /matches.xml
   def create
-    params[:match][:time] = DateTime.now
-    @match = Match.new( params[:match] )
+    @match = Match.new(params[:match])
 
     respond_to do |format|
       if @match.save
