@@ -14,10 +14,10 @@
   <% end %>
 
   <div class="field">
-    Winner: <%= collection_select :winner, :id, @players, :id, :name %>
+    Winner: <%= collection_select :match, :winner_id, @players, :id, :name %>
   </div>
   <div class="field">
-    Loser: <%= collection_select :loser, :id, @players, :id, :name %>
+    Loser: <%= collection_select :match, :loser_id, @players, :id, :name %>
   </div>
   <div class="actions">
     <%= f.submit "Record match" %>
