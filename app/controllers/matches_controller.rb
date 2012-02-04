@@ -32,11 +32,6 @@ class MatchesController < ApplicationController
     end
   end
 
-  # GET /matches/1/edit
-  def edit
-    @match = Match.find(params[:id])
-  end
-
   # POST /matches
   # POST /matches.xml
   def create
@@ -48,22 +43,6 @@ class MatchesController < ApplicationController
         format.xml  { render :xml => @match, :status => :created, :location => @match }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @match.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /matches/1
-  # PUT /matches/1.xml
-  def update
-    @match = Match.find(params[:id])
-
-    respond_to do |format|
-      if @match.update_attributes(params[:match])
-        format.html { redirect_to(@match, :notice => 'Match was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
         format.xml  { render :xml => @match.errors, :status => :unprocessable_entity }
       end
     end

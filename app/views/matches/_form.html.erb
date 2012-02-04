@@ -12,18 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :winner_id %><br />
-    <%= f.text_field :winner_id %>
+    Winner: <%= collection_select :match, :winner_id, Player.all( :order => "lower( name )" ), :id, :name %>
   </div>
   <div class="field">
-    <%= f.label :loser_id %><br />
-    <%= f.text_field :loser_id %>
-  </div>
-  <div class="field">
-    <%= f.label :time %><br />
-    <%= f.datetime_select :time %>
+    Loser: <%= collection_select :match, :loser_id, Player.all( :order => "lower( name )" ), :id, :name %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Record match" %>
   </div>
 <% end %>

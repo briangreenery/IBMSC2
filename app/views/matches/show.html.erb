@@ -2,12 +2,12 @@
 
 <p>
   <b>Winner:</b>
-  <%= @match.winner %>
+  <%= @match.winner.name %>
 </p>
 
 <p>
   <b>Loser:</b>
-  <%= @match.loser %>
+  <%= @match.loser.name %>
 </p>
 
 <p>
@@ -15,6 +15,4 @@
   <%= @match.time %>
 </p>
 
-
-<%= link_to 'Edit', edit_match_path(@match) %> |
 <%= link_to 'Back', matches_path %>
