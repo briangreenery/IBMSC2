@@ -1,23 +1,8 @@
-<h1>Listing maps</h1>
+<h1>Set maps</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @maps.each do |map| %>
-  <tr>
-    <td><%= map.name %></td>
-    <td><%= link_to 'Show', map %></td>
-    <td><%= link_to 'Edit', edit_map_path(map) %></td>
-    <td><%= link_to 'Destroy', map, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<%= form_for :maps do |f| %>
+  <% 6.times do |n| %>
+    Map <%= n + 1 %>: <%= text_field_tag 'maps[' + n.to_s + ']', n < @maps.length ? @maps[n].name : '' %><br />
+  <% end %>
+  <%= f.submit 'Save' %>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Map', new_map_path %>
