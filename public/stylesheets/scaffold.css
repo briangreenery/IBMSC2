@@ -56,7 +56,7 @@ div.field, div.actions {
   list-style: square;
 }
 
-#player_table, #matches_table {
+#player_table, #matches_table, #maps_table {
   border-radius: 5px;
 }
 
@@ -65,19 +65,28 @@ div.field, div.actions {
   background-color: #E3EDF4;
 }
 
+#maps_table {
+  border: 1px solid #9DF9C5;
+  background-color: #f7fcfa;
+}
+
+#maps_table th {
+  background-color: #E3F4ED;
+}
+
 #matches_table tr:nth-child(even), #player_table tr:nth-child(even) {
   background-color: #f7fafc;
 }
 
-#matches_table td {
+#matches_table td, #player_table td, #maps_table td {
   padding-right: 5px;
 }
 
-#player_table td {
-  padding-right: 5px;
+#maps_table td {
+  padding-left: 5px;
 }
 
-#player_div {
+#player_div, #matches_div, #maps_div {
   float: left;
   margin-right: 10px;
 }

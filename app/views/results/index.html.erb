@@ -49,3 +49,15 @@
   <% end %>
 </table>
 </div>
+
+<div id="maps_div">
+  <%= link_to "Set maps", '/maps' %>
+  <table id="maps_table">
+    <tr>
+      <th>Week <%= Match.week_played( Time.now ) %> Maps</th>
+    </tr>
+    <% @maps.each do |map| %>
+      <tr><td>&bull; <%= map.name %></td></tr>
+    <% end %>
+  </table>
+</div>
