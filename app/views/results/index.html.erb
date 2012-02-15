@@ -54,7 +54,7 @@
   <%= link_to "Set maps", maps_path %>
   <table id="maps_table">
     <tr>
-      <th>Week <%= Match.week_played( Time.now ) %> Maps</th>
+      <th>Map Pool</th>
     </tr>
     <% @maps.each do |map| %>
       <tr><td>&bull; <%= map.name %></td></tr>
