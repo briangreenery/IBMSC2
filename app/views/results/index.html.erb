@@ -23,6 +23,7 @@
 <table id="matches_table">
   <tr>
     <th>Date</th>
+    <th>Week</th>
     <th>Winner</th>
     <th>Loser</th>
     <th></th>
@@ -30,6 +31,7 @@
   <% @matches.each do |match| %>
     <tr>
       <td><%= match.time.to_time.getlocal.strftime( "%b %d %l:%M %p" ) %></td>
+      <td><%= match.week_played %></td>
       <td>
       <%= match.winner.name %>
       <%= content_tag :span, :class => match.winner_points >= 0 ? "positive" : "negative" do %>

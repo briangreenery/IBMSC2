@@ -8,12 +8,14 @@
 <p><b>Match History:</b>
 <table id="matches_table">
   <th>Date</th>
+  <th>Week</th>
   <th>Opponent</th>
   <th>Result</th>
 
   <% @matches.each do |match| %>
   <tr>
     <td><%= match[:time].to_time.getlocal.strftime( "%b %d %l:%M %p" ) %></td>
+    <td><%= match[:week] %></td>
     <td><%= match[:opponent].name %></td>
     <td>
         <%= match[:win] ? 'Win' : 'Loss' %>

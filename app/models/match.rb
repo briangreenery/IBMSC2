@@ -34,4 +34,9 @@ class Match < ActiveRecord::Base
 		winner.update_attributes :points => winner.points - winner_points
 		loser.update_attributes :points => loser.points - loser_points
 	end
+
+	def week_played
+		diff = self.time.to_time.getlocal - Time.local( 2012, "feb", 1, 18 )
+		1 + ( diff / 7.days ).floor
+	end
 end
