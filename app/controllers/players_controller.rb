@@ -20,7 +20,6 @@ class PlayersController < ApplicationController
       @matches.push( { :opponent => ( match.winner_id == @player.id ? match.loser : match.winner ),
                       :win => ( match.winner_id == @player.id ),
                       :time => match.time,
-                      :week => match.week_played,
                       :points => ( match.winner_id == @player.id ? match.winner_points : match.loser_points ) } )
     end
 
