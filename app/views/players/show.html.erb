@@ -16,7 +16,7 @@
   <tr>
     <td><%= match[:time].getlocal.strftime( "%b %d %l:%M %p" ) %></td>
     <td><%= Match.week_played( match[:time] ) %></td>
-    <td><%= match[:opponent].name %></td>
+    <td><%= link_to match[:opponent].name, player_path( match[:opponent] ) %></td>
     <td>
         <%= match[:win] ? 'Win' : 'Loss' %>
       <%= content_tag :span, :class => match[:points] >= 0 ? "positive" : "negative" do %>
