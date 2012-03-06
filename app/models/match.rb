@@ -31,12 +31,16 @@ class Match < ActiveRecord::Base
 	def calculate_points_and_set_time
 		self.time = DateTime.now
 
-		rank_diff = winner.rank - loser.rank
-		points = ( rank_diff < 0 ) ? ( 11 - rank_diff.abs ) : ( 10 + rank_diff.abs )
-		points = [0, [20, points].min].max
+		k = 20
 
-		self.winner_points = points
-		self.loser_points = -points
+		q_winner = 10.0 ** ( winner.points / 200.0 )
+		q_loser = 10.0 ** ( loser.points / 200.0 )
+
+		expected = q_winner / ( q_winner + q_loser )
+		adjustment = ( k * ( 1.0 - expected ) ).round
+
+		self.winner_points = adjustment
+		self.loser_points = -adjustment
 	end
 
 	def add_points
