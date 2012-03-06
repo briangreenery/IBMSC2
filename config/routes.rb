@@ -1,4 +1,6 @@
 Ibmsc2::Application.routes.draw do
+  resources :tournaments
+
   resources :maps
 
   root :to => 'results#index'
