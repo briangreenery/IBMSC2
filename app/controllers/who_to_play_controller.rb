@@ -19,8 +19,8 @@ class WhoToPlayController < ApplicationController
   		@opponents.push(
   			{ :player => opponent,
   		      :chance => number_to_percentage( 100 * Tournament.chance_to_win( @player.points, opponent.points ), :precision => 0 ),
-  		      :win => Tournament.adjustment( @player.points, opponent.points ),
-  		      :lose => Tournament.adjustment( opponent.points, @player.points ),
+  		      :win => Tournament.adjustment( @player.points, opponent.points ) + Tournament.bonus,
+  		      :lose => -Tournament.adjustment( opponent.points, @player.points ) + Tournament.bonus,
   		      :handicap => Tournament.handicap( @player.league, opponent.league ) } )
   	end
 

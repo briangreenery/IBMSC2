@@ -35,8 +35,8 @@ class Match < ActiveRecord::Base
 
 		adjustment = Tournament.adjustment( winner.points, loser.points )
 
-		self.winner_points = adjustment
-		self.loser_points = -adjustment
+		self.winner_points = adjustment + Tournament.bonus
+		self.loser_points = -adjustment + Tournament.bonus
 	end
 
 	def add_points

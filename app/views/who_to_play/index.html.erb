@@ -20,7 +20,7 @@
     	<td><%= link_to opponent[:player].name_with_code, player_path( opponent[:player] ) %></td>
     	<td class="centered-text"><%= opponent[:chance] %></td>
     	<td class="centered-text"><span class="positive">+<%= opponent[:win] %></span></td>
-    	<td class="centered-text"><span class="negative">-<%= opponent[:lose] %></span></td>
+    	<td class="centered-text"><span class="negative"><%= opponent[:lose] %></span></td>
     	<td class="centered-text">
     		<% if opponent[:handicap] != 0 %>
     	      <%= content_tag :span, :class => opponent[:handicap] >= 0 ? "positive_handicap" : "negative_handicap" do %>

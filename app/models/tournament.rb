@@ -20,6 +20,10 @@ class Tournament < ActiveRecord::Base
 		q_winner / ( q_winner + q_loser )
 	end
 
+	def self.bonus
+		1
+	end
+
 	def self.adjustment( winner_points, loser_points )
 		k = 32
 		expected = Tournament.chance_to_win winner_points, loser_points
