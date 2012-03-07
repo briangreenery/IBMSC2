@@ -3,6 +3,7 @@
 <p><b>Name:</b> <%= @player.name %></p>
 <p><b>Character code:</b> <%= @player.character_code %></p>
 <p><b>Points:</b> <%= @player.points %></p>
+<p><b>League:</b> <%= render 'league_with_icon' %></p>
 <p><b>Record:</b> <%= @player.games_won.size %>-<%= @player.games_lost.size %></p>
 
 <p><b>Match History:</b>

@@ -20,6 +20,10 @@
     <%= f.text_field :character_code %>
   </div>
   <div class="field">
+    <%= f.label :league %><br />
+    <%= f.select :league, [ ['--', nil], ['Master', 1], ['Diamond', 2], ['Platinum', 3], ['Gold', 4], ['Silver', 5], ['Bronze', 6] ] %>
+  </div>
+  <div class="field">
     <%= f.label :points %><br />
     <%= f.text_field :points %>
   </div>

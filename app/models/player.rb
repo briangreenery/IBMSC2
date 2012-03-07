@@ -19,4 +19,13 @@ class Player < ActiveRecord::Base
     Player.count( :conditions => ['points > ?', points] ) + 1
 	end
 
+  def league_name
+    return ""         if league.nil?
+    return "Master"   if league == 1
+    return "Diamond"  if league == 2
+    return "Platinum" if league == 3
+    return "Gold"     if league == 4
+    return "Silver"   if league == 5
+    return "Bronze"
+  end
 end
