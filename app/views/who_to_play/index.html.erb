@@ -21,8 +21,13 @@
     	<td class="centered-text"><%= opponent[:chance] %></td>
     	<td class="centered-text"><span class="positive">+<%= opponent[:win] %></span></td>
     	<td class="centered-text"><span class="negative">-<%= opponent[:lose] %></span></td>
-    	
-    	<td></td>
+    	<td class="centered-text">
+    		<% if opponent[:handicap] != 0 %>
+    	      <%= content_tag :span, :class => opponent[:handicap] >= 0 ? "positive_handicap" : "negative_handicap" do %>
+                <%= opponent[:handicap] > 0 ? 'They play at ' : 'I play at ' %><%= 100 - opponent[:handicap].abs %>%
+              <% end %>
+            <% end %>
+    	</td>
     </tr>
   <% end %>
 </table>

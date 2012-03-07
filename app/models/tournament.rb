@@ -1,5 +1,3 @@
-include ActionView::Helpers::NumberHelper
-
 class Tournament < ActiveRecord::Base
 	has_many :matches
 
@@ -26,5 +24,17 @@ class Tournament < ActiveRecord::Base
 		k = 32
 		expected = Tournament.chance_to_win winner_points, loser_points
 		( k * ( 1.0 - expected ) ).round
+	end
+
+	def self.handicap( player_league, opponent_league )
+		if player_league.nil? || opponent_league.nil? || ( player_league - opponent_league ).abs < 2
+			return 0
+		end
+
+		if player_league > opponent_league
+			10 * ( player_league - opponent_league - 1 )
+		else
+			10 * ( player_league - opponent_league + 1 )
+		end
 	end
 end

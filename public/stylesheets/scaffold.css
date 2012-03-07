@@ -105,3 +105,11 @@ div.field, div.actions {
   font-weight: bold;
   color: red;
 }
+
+.positive_handicap {
+  color: green;
+}
+
+.negative_handicap {
+  color: red;
+}
