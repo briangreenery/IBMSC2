@@ -1,4 +1,6 @@
 Ibmsc2::Application.routes.draw do
+  match '/who-should-i-play' => 'who_to_play#index'
+
   resources :tournaments
 
   resources :maps

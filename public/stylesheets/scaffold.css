@@ -56,6 +56,10 @@ div.field, div.actions {
   list-style: square;
 }
 
+.centered-text {
+  text-align: center;
+}
+
 #player_table, #matches_table, #maps_table {
   border-radius: 5px;
 }
