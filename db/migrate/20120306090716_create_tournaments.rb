@@ -6,7 +6,6 @@ class CreateTournaments < ActiveRecord::Migration
 
       t.timestamps
     end
-    Tournament.create :name => 'February 1v1', :start_date => Time.local( 2012, 2, 1, 18 )
   end
 
   def self.down
