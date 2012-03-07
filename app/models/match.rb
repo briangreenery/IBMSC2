@@ -33,10 +33,10 @@ class Match < ActiveRecord::Base
 		self.time = DateTime.now
 		self.tournament = Tournament.current
 
-		k = 20
+		k = 32
 
-		q_winner = 10.0 ** ( winner.points / 200.0 )
-		q_loser = 10.0 ** ( loser.points / 200.0 )
+		q_winner = 10.0 ** ( winner.points / 400.0 )
+		q_loser = 10.0 ** ( loser.points / 400.0 )
 
 		expected = q_winner / ( q_winner + q_loser )
 		adjustment = ( k * ( 1.0 - expected ) ).round
