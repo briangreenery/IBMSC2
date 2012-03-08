@@ -1,8 +1,8 @@
-body { background-color: #fff; color: #333; }
+body { background-color: rgb( 26, 27, 31 ); color: #333; }
 
 body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
+  font-family: HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size:   14px;
   line-height: 18px;
 }
 
@@ -13,7 +13,6 @@ pre {
 }
 
 a { color: #0077cc; text-decoration: none; }
-a:visited { color: #4a6b82; }
 a:hover { text-decoration: underline; }
 
 div.field, div.actions {
@@ -60,38 +59,55 @@ div.field, div.actions {
   text-align: center;
 }
 
-#player_table, #matches_table, #maps_table {
+.right-text {
+  text-align: right;
+}
+
+.info_div {
   border-radius: 5px;
+  border: 1px solid rgba( 0, 0, 0, .1 );
 }
 
-#matches_table, #player_table {
-  border: 1px solid #9DC5F9;
-  background-color: #E3EDF4;
+.info_div {
+  background-color: #fff;
+  margin-bottom: 10px;
 }
 
-#maps_table {
-  border: 1px solid #9DF9C5;
-  background-color: #f7fcfa;
+.info_div ul {
+  list-style: none;
+  padding: 0px;
+  margin: 5px 0px 0px 0px;
 }
 
-#maps_table th {
-  background-color: #E3F4ED;
+.inner_div {
+  margin: 12px;
 }
 
-#matches_table tr:nth-child(even), #player_table tr:nth-child(even) {
-  background-color: #f7fafc;
+.map_name {
 }
 
-#matches_table td, #player_table td {
-  padding-right: 5px;
+.result_table {
+  background-color: #fff;
+  border-collapse:collapse;
 }
 
-#maps_table td {
-  padding-left: 1em;
-  padding-right: 2em;
+.result_table th {
+  padding: 0px 10px 5px 0px;  
+  text-align: left;
 }
 
-#player_div, #matches_div, #maps_div {
+.result_table td
+{
+  border-top:1px solid #e8e8e8;
+  padding: 1px 10px 0px 0px;
+}
+
+.float_left {
+  float: left;
+  margin-right: 10px;
+}
+
+#player_div, #matches_div {
   float: left;
   margin-right: 10px;
 }
@@ -112,4 +128,34 @@ div.field, div.actions {
 
 .negative_handicap {
   color: red;
+}
+
+#recent_matches td {
+  height: 24px;
+}
+
+.blue_button {
+  cursor: pointer;
+  margin: 0px;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+  background-color: #019AD2;
+  background-image: -webkit-linear-gradient(top, #33BCEF, #019AD2);
+  background-repeat: repeat-x;
+  border-radius: 4px;
+  border: 1px solid #057ED0;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  height: 30px;
+}
+
+.blue_button:hover {
+  background-image:-webkit-linear-gradient(#2BAADB,#029BD3);
+}
+
+.blue_button:active {
+  background-image:-webkit-linear-gradient(#299FCB,#029BD3);
+  box-shadow: none;
 }
