@@ -123,11 +123,9 @@ div.field, div.actions {
 }
 
 .positive_handicap {
-  color: green;
 }
 
 .negative_handicap {
-  color: red;
 }
 
 #recent_matches td {

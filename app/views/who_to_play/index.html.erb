@@ -1,33 +1,38 @@
-<form action="/who-should-i-play" method="get">
-  I am: <%= select_tag 'player', options_from_collection_for_select( @players, 'id', 'name', @player.id ) %>
-  <input type="submit" value="Refresh" />
-</form>
-<br/>
-<table id="matches_table">
-  <tr>
-    <th></th>
-    <th>Opponent</th>
-    <th>Chance to win</th>
-    <th>Win points</th>
-    <th>Loss points</th>
-    <th>Handicap</th>
-    <th></th>
-  </tr>
-  <% @opponents.each do |opponent| %>
-    <tr>
-    	<td class="centered-text">
-    		<%= image_tag( '/images/' + opponent[:player].league_name.downcase + '.png', :height => 20, :width => 19 ) if !opponent[:player].league_name.empty? %></td>
-    	<td><%= link_to opponent[:player].name_with_code, player_path( opponent[:player] ) %></td>
-    	<td class="centered-text"><%= opponent[:chance] %></td>
-    	<td class="centered-text"><span class="positive">+<%= opponent[:win] %></span></td>
-    	<td class="centered-text"><span class="negative"><%= opponent[:lose] %></span></td>
-    	<td class="centered-text">
-    		<% if opponent[:handicap] != 0 %>
-    	      <%= content_tag :span, :class => opponent[:handicap] >= 0 ? "positive_handicap" : "negative_handicap" do %>
-                <%= opponent[:handicap] > 0 ? 'They play at ' : 'I play at ' %><%= 100 - opponent[:handicap].abs %>%
-              <% end %>
-            <% end %>
-    	</td>
-    </tr>
-  <% end %>
-</table>
+<div class="info_div float_left">
+  <div class="inner_div">
+
+    <form action="/who-should-i-play" method="get">
+      I am: <%= select_tag 'player', options_from_collection_for_select( @players, 'id', 'name', @player.id ) %>
+      <input type="submit" value="Refresh" />
+    </form>
+    <br/>
+    <table class="result_table">
+      <tr>
+        <th></th>
+        <th>Opponent</th>
+        <th>Chance to win</th>
+        <th>Win points</th>
+        <th>Loss points</th>
+        <th>Handicap</th>
+        <th></th>
+      </tr>
+      <% @opponents.each do |opponent| %>
+      <tr>
+        <td class="centered-text">
+        <%= image_tag( '/images/' + opponent[:player].league_name.downcase + '.png', :height => 20, :width => 19 ) if !opponent[:player].league_name.empty? %></td>
+        <td><%= link_to opponent[:player].name_with_code, player_path( opponent[:player] ) %></td>
+        <td class="centered-text"><%= opponent[:chance] %></td>
+          <td class="centered-text"><span class="positive">+<%= opponent[:win] %></span></td>
+          <td class="centered-text"><span class="negative"><%= opponent[:lose] %></span></td>
+          <td>
+          <% if opponent[:handicap] != 0 %>
+          <%= content_tag :span do %>
+          <%= opponent[:handicap] > 0 ? 'They play at ' : 'I play at ' %><%= 100 - opponent[:handicap].abs %>%
+          <% end %>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
