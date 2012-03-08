@@ -4,16 +4,19 @@
 <p><b>Character code:</b> <%= @player.character_code %></p>
 <p><b>Points:</b> <%= @player.points %></p>
 <p><b>League:</b> <%= render 'league_with_icon' %></p>
-<p><b>Record:</b> <%= @player.games_won.size %>-<%= @player.games_lost.size %></p>
+<p><b>Record this season:</b> <%= @player.record_this_season %></p>
+<p><b>Record all time:</b> <%= @player.record_all_time %></p>
 
 <p><b>Match History:</b>
 <table id="matches_table">
+  <th>Tournament</th>
   <th>Week</th>
   <th>Opponent</th>
   <th>Result</th>
 
   <% @matches.each do |match| %>
   <tr>
+    <td><%= match[:tournament] %></td>
     <td><%= match[:week] %></td>
     <td><%= link_to match[:opponent].name, player_path( match[:opponent] ) %></td>
     <td>

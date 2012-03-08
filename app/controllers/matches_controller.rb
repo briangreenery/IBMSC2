@@ -25,6 +25,7 @@ class MatchesController < ApplicationController
   # GET /matches/new.xml
   def new
     @match = Match.new
+    @players = Tournament.current.players.sort { |a,b| a.name.downcase <=> b.name.downcase }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +37,7 @@ class MatchesController < ApplicationController
   # POST /matches.xml
   def create
     @match = Match.new(params[:match])
+    @players = Tournament.current.players.sort { |a,b| a.name.downcase <=> b.name.downcase }
 
     respond_to do |format|
       if @match.save

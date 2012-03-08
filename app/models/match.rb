@@ -6,7 +6,6 @@ class Match < ActiveRecord::Base
 	belongs_to :tournament
 
 	validate :winner_is_not_loser
-	validate :only_play_once_per_week
 	
 	before_save :calculate_points_and_set_time
 	after_save :add_points
@@ -15,17 +14,6 @@ class Match < ActiveRecord::Base
 	def winner_is_not_loser
 		if winner_id == loser_id then
 			errors.add_to_base( "A player can't play themself" )
-		end
-	end
-
-	def only_play_once_per_week
-		last_game = Match.find( :first,
-		                        :conditions => ['(winner_id = ? and loser_id = ?) or (winner_id = ? and loser_id = ?)',
-			                                     winner_id, loser_id, loser_id, winner_id],
-			                    :order => 'time DESC' )
-		
-		if !last_game.nil? && last_game.week_played == Tournament.this_week
-			errors.add_to_base( winner.name + ' has already played ' + loser.name + ' this week (' + time_ago_in_words( last_game.time ) + ' ago)' )
 		end
 	end
 
@@ -40,13 +28,19 @@ class Match < ActiveRecord::Base
 	end
 
 	def add_points
-		winner.update_attributes :points => winner.points + winner_points
-		loser.update_attributes :points => loser.points + loser_points
+		winner_standing = Standing.where( :player_id => winner_id, :tournament_id => tournament.id ).first
+		loser_standing = Standing.where( :player_id => loser_id, :tournament_id => tournament.id ).first
+
+		winner_standing.update_attributes :points => winner_standing.points + winner_points
+		loser_standing.update_attributes :points => loser_standing.points + loser_points
 	end
 
 	def remove_points
-		winner.update_attributes :points => winner.points - winner_points
-		loser.update_attributes :points => loser.points - loser_points
+		winner_standing = Standing.where( :player_id => winner_id, :tournament_id => tournament.id ).first
+		loser_standing = Standing.where( :player_id => loser_id, :tournament_id => tournament.id ).first
+
+		winner_standing.update_attributes :points => winner_standing.points - winner_points
+		loser_standing.update_attributes :points => loser_standing.points - loser_points
 	end
 
 	def week_played

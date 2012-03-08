@@ -2,7 +2,7 @@ include ActionView::Helpers::NumberHelper
 
 class WhoToPlayController < ApplicationController
   def index
-  	@players = Player.all( :order => 'points DESC' )
+  	@players = Tournament.current.players
   	@player = nil
 
   	if params.has_key? :player

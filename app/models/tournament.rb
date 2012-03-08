@@ -1,5 +1,7 @@
 class Tournament < ActiveRecord::Base
-	has_many :matches
+	has_many :matches, :order => 'time DESC, id DESC'
+	has_many :standings, :order => 'points DESC'
+	has_many :players, :through => :standings, :order => 'points DESC'
 
 	def self.week_diff( match_date, start_date )
 		diff = match_date - start_date
@@ -11,7 +13,7 @@ class Tournament < ActiveRecord::Base
 	end
 
 	def self.current
-		Tournament.all[0]
+		Tournament.order( :start_date ).last
 	end
 
 	def self.chance_to_win( winner_points, loser_points )
@@ -21,7 +23,7 @@ class Tournament < ActiveRecord::Base
 	end
 
 	def self.bonus
-		1
+		2
 	end
 
 	def self.adjustment( winner_points, loser_points )

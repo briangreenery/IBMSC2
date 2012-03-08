@@ -18,6 +18,7 @@ class PlayersController < ApplicationController
     @matches = Array.new
     Match.order( 'time DESC, id DESC ' ).where( 'winner_id = ? or loser_id = ?', @player.id, @player.id ).each do |match|
       @matches.push( { :opponent => ( match.winner_id == @player.id ? match.loser : match.winner ),
+                      :tournament => match.tournament.name,
                       :win => ( match.winner_id == @player.id ),
                       :week => match.week_played,
                       :points => ( match.winner_id == @player.id ? match.winner_points : match.loser_points ) } )

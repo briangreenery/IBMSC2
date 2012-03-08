@@ -1,5 +1,10 @@
 Ibmsc2::Application.routes.draw do
-  match '/who-should-i-play' => 'who_to_play#index'
+  match '/who-should-i-play'      => 'who_to_play#index'
+  match '/add-player'             => 'add_player#add_player'
+  match '/add-new-player'         => 'add_player#add_new_player'
+  match '/add-existing-player'    => 'add_player#add_existing_player'
+  match '/create-new-player'      => 'add_player#create_new_player'
+  match '/create-existing-player' => 'add_player#create_existing_player'
 
   resources :tournaments
 
