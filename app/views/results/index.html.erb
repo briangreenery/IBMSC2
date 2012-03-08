@@ -3,13 +3,15 @@
 <table id="player_table">
   <tr>
     <th>Rank</th>
+    <th></th>
     <th>Player</th>
     <th>Points</th>
     <th>Record</th>
   </tr>
   <% @players.each do |player| %>
     <tr>
-      <td><%= player.rank %>
+      <td>#<%= player.rank %>
+      <td><%= image_tag( '/images/' + player.league_name.downcase + '.png', :height => 20, :width => 19 ) if !player.league_name.empty? %></td>
       <td><%= link_to player.name_with_code, player_path( player ) %></td>
       <td><%= player.points %></td>
       <td><%= player.record_this_season %></td>
