@@ -133,15 +133,53 @@ div.field, div.actions {
   font-size: 13px;
   font-weight: bold;
   height: 30px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 2px;
 }
 
 .blue_button:hover {
   background-image:-webkit-linear-gradient(#2BAADB,#029BD3);
+  text-decoration: none;
 }
 
 .blue_button:active {
   background-image:-webkit-linear-gradient(#299FCB,#029BD3);
   box-shadow: none;
+  text-decoration: none;
+}
+
+.gray_button {
+  cursor: pointer;
+  margin: 0px;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+  background-color: #ddd;
+  background-image: -webkit-linear-gradient(top, #fff, #ddd);
+  background-repeat: repeat-x;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px 0px inset;
+  color: #333;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  height: 30px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 2px;
+}
+
+.gray_button:hover {
+  background-image:-webkit-linear-gradient(#2BAADB,#029BD3);
+  text-decoration: none;
+}
+
+.gray_button:active {
+  background-image:-webkit-linear-gradient(#299FCB,#029BD3);
+  box-shadow: none;
+  text-decoration: none;
 }
 
 .attr {

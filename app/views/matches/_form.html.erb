@@ -11,13 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    Winner: <%= collection_select :match, :winner_id, @players, :id, :name %>
+  <div class="attr">
+    <div class="float_left" style="text-align:right; width: 50px"><b>Winner</b></div><%= collection_select :match, :winner_id, @players, :id, :name %>
   </div>
-  <div class="field">
-    Loser: <%= collection_select :match, :loser_id, @players, :id, :name %>
+  <div class="attr">
+    <div class="float_left" style="text-align:right; width: 50px"><b>Loser</b></div><%= collection_select :match, :loser_id, @players, :id, :name %>
   </div>
-  <div class="actions">
-    <%= f.submit "Record match" %>
+  <div class="actions" style="float:right;">
+    <%= f.submit "Submit", :class => "blue_button" %>
   </div>
 <% end %>

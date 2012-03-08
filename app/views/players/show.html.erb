@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<div class="info_div float_left">
+<div class="float_left">
+<div class="info_div">
   <div class="inner_div">
     <div class="attr"><div class="attr_name">Name</div><div class="attr_value"><%= @player.name %></div></div>
     <div class="attr"><div class="attr_name">Character code</div><div class="attr_value"><%= @player.character_code %></div></div>
@@ -9,7 +10,7 @@
     <div class="attr"><div class="attr_name">This season</div><div class="attr_value"><%= @player.record_this_season %></div></div>
     <div class="attr"><div class="attr_name">All time</div><div class="attr_value"><%= @player.record_all_time %></div></div>
 
-    <table class="result_table">
+    <table class="result_table attr">
       <th>Tournament</th>
       <th>Week</th>
       <th>Opponent</th>
@@ -29,6 +30,9 @@
       </tr>
       <% end %>
     </table>
-    <%= link_to 'Edit ' + @player.name, edit_player_path(@player) %>
   </div>
+</div>
+  <form action=<%= '/players/' + @player.id.to_s + '/edit' %> method="get">
+    <button type="submit" class="gray_button">Edit <%= @player.name %></button>
+  </form>
 </div>
