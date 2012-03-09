@@ -1,8 +1,13 @@
-<h1>Set maps</h1>
-
-<%= form_for :maps do |f| %>
-  <% 6.times do |n| %>
-    Map <%= n + 1 %>: <%= text_field_tag 'maps[' + n.to_s + ']', n < @maps.length ? @maps[n].name : '' %><br />
-  <% end %>
-  <%= f.submit 'Save' %>
-<% end %>
+<div class="float_left info_div">
+  <div class="inner_div">
+    <%= form_for :maps do |f| %>
+      <% 6.times do |n| %>
+        <div class="attr">
+          <div class="short_attr_name">Map <%= n + 1 %></div>
+          <%= text_field_tag 'maps[' + n.to_s + ']', n < @maps.length ? @maps[n].name : '' %>
+        </div>
+      <% end %>
+      <%= f.submit 'Save', :class => 'button blue_button short_attr_save' %>
+    <% end %>
+  </div>
+</div>

@@ -12,12 +12,12 @@
   <% end %>
 
   <div class="attr">
-    <div class="float_left" style="text-align:right; width: 50px"><b>Winner</b></div><%= collection_select :match, :winner_id, @players, :id, :name %>
+    <div class="short_attr_name">Winner</div><%= collection_select :match, :winner_id, @players, :id, :name %>
   </div>
   <div class="attr">
-    <div class="float_left" style="text-align:right; width: 50px"><b>Loser</b></div><%= collection_select :match, :loser_id, @players, :id, :name %>
+    <div class="short_attr_name">Loser</div><%= collection_select :match, :loser_id, @players, :id, :name %>
   </div>
-  <div class="actions" style="float:right;">
+  <div class="actions short_attr_save">
     <%= f.submit "Submit", :class => "button blue_button" %>
   </div>
 <% end %>

@@ -212,5 +212,21 @@ img {
   margin-right: 15px;
 }
 
+.short_attr_name {
+  float: left;
+  text-align: right;
+  font-weight: bold;
+  width: 50px;
+  margin-right: 15px;
+}
+
 .attr_value {
+}
+
+.attr_save {
+  margin-left: 125px;
+}
+
+.short_attr_save {
+  margin-left: 65px;
 }

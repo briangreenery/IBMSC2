@@ -11,19 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
+  <div class="field attr">
+    <div class="attr_name"><%= f.label :name %></div>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :character_code %><br />
+  <div class="field attr">
+    <div class="attr_name"><%= f.label :character_code %></div>
     <%= f.text_field :character_code %>
   </div>
-  <div class="field">
-    <%= f.label :league %><br />
+  <div class="field attr">
+    <div class="attr_name"><%= f.label :league %></div>
     <%= f.select :league, [ ['--', nil], ['Master', 1], ['Diamond', 2], ['Platinum', 3], ['Gold', 4], ['Silver', 5], ['Bronze', 6] ] %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions attr_save">
+    <%= f.submit 'Save', :class => 'button blue_button' %>
   </div>
 <% end %>
