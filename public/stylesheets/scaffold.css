@@ -1,9 +1,9 @@
 body { background-color: rgb( 26, 27, 31 ); color: #333; }
 
-body, p, ol, ul, td {
+body {
   font-family: HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size:   14px;
-  line-height: 18px;
+  line-height: 16px;
 }
 
 pre {
@@ -91,6 +91,11 @@ div.field, div.actions {
   border-collapse:collapse;
 }
 
+img {
+  margin: 0px;
+  padding: 0px;
+}
+
 .result_table th {
   padding: 0px 10px 5px 0px;  
   text-align: left;
@@ -100,7 +105,7 @@ div.field, div.actions {
 {
   border-top:1px solid #e8e8e8;
   padding: 1px 10px 0px 0px;
-  height: 24px;
+  height: 25px;
 }
 
 .float_left {
@@ -118,53 +123,55 @@ div.field, div.actions {
   color: red;
 }
 
-.blue_button {
+.button {
+  display: inline-block;
   cursor: pointer;
   margin: 0px;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
-  background-color: #019AD2;
-  background-image: -webkit-linear-gradient(top, #33BCEF, #019AD2);
   background-repeat: repeat-x;
   border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+  padding-bottom: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+}
+
+.blue_button {
+  background-color: #019AD2;
+  background-image: -webkit-linear-gradient(top, #33BCEF, #019AD2);
+  background-image: -moz-linear-gradient(top, #33BCEF, #019AD2);
+  background-image: linear-gradient(top, #33BCEF, #019AD2);
   border: 1px solid #057ED0;
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset;
   color: white;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: bold;
-  height: 30px;
-  padding-bottom: 3px;
-  padding-left: 6px;
-  padding-right: 6px;
-  padding-top: 2px;
 }
 
 .blue_button:hover {
-  background-image:-webkit-linear-gradient(#2BAADB,#029BD3);
+  background-image: -webkit-linear-gradient(#2BAADB,#029BD3);
+  background-image: -moz-linear-gradient(#2BAADB,#029BD3);
+  background-image: linear-gradient(#2BAADB,#029BD3);
   text-decoration: none;
 }
 
 .blue_button:active {
-  background-image:-webkit-linear-gradient(#299FCB,#029BD3);
-  box-shadow: none;
+  background-image: -webkit-linear-gradient(#299FCB,#029BD3);
+  background-image: -moz-linear-gradient(#299FCB,#029BD3);
+  background-image: linear-gradient(#299FCB,#029BD3);
   text-decoration: none;
+  box-shadow: none;
 }
 
 .gray_button {
-  cursor: pointer;
-  margin: 0px;
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
   background-color: #ddd;
   background-image: -webkit-linear-gradient(top, #fff, #ddd);
-  background-repeat: repeat-x;
-  border-radius: 4px;
+  background-image: -moz-linear-gradient(top, #fff, #ddd);
+  background-image: linear-gradient(top, #fff, #ddd);
   border: 1px solid #ccc;
   box-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px 0px inset;
   color: #333;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: bold;
-  height: 30px;
   padding-bottom: 3px;
   padding-left: 6px;
   padding-right: 6px;
@@ -172,14 +179,18 @@ div.field, div.actions {
 }
 
 .gray_button:hover {
-  background-image:-webkit-linear-gradient(#2BAADB,#029BD3);
+  background-image: -webkit-linear-gradient(#2BAADB,#029BD3);
+  background-image: -moz-linear-gradient(#2BAADB,#029BD3);
+  background-image: linear-gradient(#2BAADB,#029BD3);
   text-decoration: none;
 }
 
 .gray_button:active {
-  background-image:-webkit-linear-gradient(#299FCB,#029BD3);
-  box-shadow: none;
+  background-image: -webkit-linear-gradient(#299FCB,#029BD3);
+  background-image: -moz-linear-gradient(#299FCB,#029BD3);
+  background-image: linear-gradient(#299FCB,#029BD3);
   text-decoration: none;
+  box-shadow: none;
 }
 
 .attr {

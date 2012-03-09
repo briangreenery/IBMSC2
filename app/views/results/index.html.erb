@@ -1,30 +1,26 @@
 <div class="float_left">
 
-<div class="info_div">
-  <div class="inner_div">
-    <b>Map pool</b> · <small><%= link_to "Change", maps_path %></small>
-    <ul>
-      <% @maps.each do |map| %>
-        <li class="map_name"><%= link_to map.name, map.url %></li>
-      <% end %>
-    </ul>
+  <div class="info_div">
+    <div class="inner_div">
+      <b>Map pool</b> · <small><%= link_to "Change", maps_path %></small>
+      <ul>
+        <% @maps.each do |map| %>
+          <li class="map_name"><%= link_to map.name, map.url %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
 
-<div class="info_div">
-  <div class="inner_div">
-    <ul>
-      <li><%= link_to "Who should I play?", '/who-should-i-play' %></li>
-      <li><%= link_to "Add player", '/add-player' %></li>
-    </ul>
-    <form>
-    </form>
-</div>
-</div>
+  <div class="info_div">
+    <div class="inner_div">
+      <ul>
+        <li><%= link_to "Who should I play?", '/who-should-i-play' %></li>
+        <li><%= link_to "Add player", '/add-player' %></li>
+      </ul>
+    </div>
+  </div>
 
-<form action="/matches/new" method="get">
-  <button type="submit" class="blue_button">Record match</button>
-</form>
+  <%= link_to 'Record match', new_match_path, :class => 'button blue_button' %>
 
 </div>
 
