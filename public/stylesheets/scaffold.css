@@ -135,7 +135,7 @@ img {
   padding-bottom: 6px;
   padding-left: 8px;
   padding-right: 8px;
-  padding-top: 4px;
+  padding-top: 6px;
 }
 
 .blue_button {
@@ -149,6 +149,7 @@ img {
 }
 
 .blue_button:hover {
+  background-color: #029BD3;
   background-image: -webkit-linear-gradient(#2BAADB,#029BD3);
   background-image: -moz-linear-gradient(#2BAADB,#029BD3);
   background-image: linear-gradient(#2BAADB,#029BD3);
@@ -156,6 +157,7 @@ img {
 }
 
 .blue_button:active {
+  background-color: #029BD3;
   background-image: -webkit-linear-gradient(#299FCB,#029BD3);
   background-image: -moz-linear-gradient(#299FCB,#029BD3);
   background-image: linear-gradient(#299FCB,#029BD3);
@@ -179,17 +181,21 @@ img {
 }
 
 .gray_button:hover {
-  background-image: -webkit-linear-gradient(#2BAADB,#029BD3);
-  background-image: -moz-linear-gradient(#2BAADB,#029BD3);
-  background-image: linear-gradient(#2BAADB,#029BD3);
+  background-color: #ccc;
+  background-image: -webkit-linear-gradient(#f8f8f8,#cacaca);
+  background-image: -moz-linear-gradient(#f8f8f8,#cacaca);
+  background-image: linear-gradient(#f8f8f8,#cacaca);
   text-decoration: none;
+  border: 1px solid #999;
 }
 
 .gray_button:active {
-  background-image: -webkit-linear-gradient(#299FCB,#029BD3);
-  background-image: -moz-linear-gradient(#299FCB,#029BD3);
-  background-image: linear-gradient(#299FCB,#029BD3);
+  background-color: #bbb;
+  background-image: -webkit-linear-gradient(#d8d8d8,#cacaca);
+  background-image: -moz-linear-gradient(#d8d8d8,#cacaca);
+  background-image: linear-gradient(#d8d8d8,#cacaca);
   text-decoration: none;
+  border: 1px solid #999;
   box-shadow: none;
 }
 
