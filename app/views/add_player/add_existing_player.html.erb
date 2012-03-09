@@ -1,4 +1,0 @@
-<%= form_tag( '/create-existing-player' ) do %>
-  Add player: <%= select_tag 'player', options_from_collection_for_select( @players, 'id', 'name' ) %>
-  <%= submit_tag "Submit" %>
-<% end %>
