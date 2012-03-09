@@ -26,7 +26,6 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @player }
     end
   end
 
@@ -34,10 +33,12 @@ class PlayersController < ApplicationController
   # GET /players/new.xml
   def new
     @player = Player.new
+    @starting_points = 1000
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @player }
+    @inactive_players = []
+
+    Player.all( :order => "lower( name )" ).each do |player|
+      @inactive_players.push player if player.points == 0
     end
   end
 
@@ -50,16 +51,28 @@ class PlayersController < ApplicationController
   # POST /players.xml
   def create
     @player = Player.new(params[:player])
+    @starting_points = params[:points].to_i
+
+    @inactive_players = []
 
     respond_to do |format|
       if @player.save
+        Standing.create :tournament => Tournament.current, :player => @player, :points => @starting_points
         format.html { redirect_to '/', :notice => 'Player was successfully created.' }
-        format.xml  { render :xml => @player, :status => :created, :location => @player }
       else
+        Player.all( :order => "lower( name )" ).each do |player|
+          @inactive_players.push player if player.points == 0
+        end
         format.html { render :action => "new" }
-        format.xml  { render :xml => @player.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def restore
+    @player = Player.find_by_id params[:player]
+    @starting_points = params[:points].to_i
+    Standing.create :tournament => Tournament.current, :player => @player, :points => @starting_points
+    redirect_to '/'
   end
 
   # PUT /players/1
@@ -70,10 +83,8 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.update_attributes(params[:player])
         format.html { redirect_to(@player, :notice => 'Player was successfully updated.') }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @player.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -86,7 +97,6 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(players_url) }
-      format.xml  { head :ok }
     end
   end
 end

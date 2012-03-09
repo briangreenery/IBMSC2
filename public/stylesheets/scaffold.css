@@ -230,3 +230,16 @@ img {
 .short_attr_save {
   margin-left: 65px;
 }
+
+.form_title {
+  margin-bottom: 10px;
+}
+
+.form_subtitle {
+  color: #999;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  font-weight: normal;
+}
