@@ -63,6 +63,10 @@ div.field, div.actions {
   text-align: right;
 }
 
+.main {
+  width: 1050px;
+}
+
 .info_div {
   border-radius: 5px;
   border: 1px solid rgba( 0, 0, 0, .1 );

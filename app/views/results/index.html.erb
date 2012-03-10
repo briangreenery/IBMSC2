@@ -1,81 +1,85 @@
-<div class="float_left">
-
-  <div class="info_div">
+<div class="main">
+  
+  <div class="float_left">
+  
+    <div class="info_div">
+      <div class="inner_div">
+        <b>Map pool</b> · <small><%= link_to "Change", maps_path %></small>
+        <ul>
+          <% @maps.each do |map| %>
+            <li class="map_name"><%= link_to map.name, map.url %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="info_div">
+      <div class="inner_div">
+        <ul>
+          <li><%= link_to "Who should I play?", '/who-should-i-play' %></li>
+          <li><%= link_to "Add player", new_player_path %></li>
+        </ul>
+      </div>
+    </div>
+  
+    <%= link_to 'Record match', new_match_path, :class => 'button blue_button' %>
+  
+  </div>
+  
+  <div class="float_left info_div">
     <div class="inner_div">
-      <b>Map pool</b> · <small><%= link_to "Change", maps_path %></small>
-      <ul>
-        <% @maps.each do |map| %>
-          <li class="map_name"><%= link_to map.name, map.url %></li>
+      <table class="result_table">
+        <tr>
+          <th>Rank</th>
+          <th></th>
+          <th>Player</th>
+          <th>Points</th>
+          <th>Record</th>
+        </tr>
+        <% @players.each do |player| %>
+        <tr>
+          <td class="centered-text"><%= player.rank %></td>
+          <td><%= image_tag( '/images/' + player.league_name + '.png', :height => 20, :width => 19 ) if !player.league_name.empty? %></td>
+          <td><%= link_to player.name_with_code, player_path( player ) %></td>
+          <td class="centered-text"><%= player.points %></td>
+          <td class="centered-text"><%= player.record_this_season %></td>
+        </tr>
         <% end %>
-      </ul>
+      </table>
     </div>
   </div>
-
-  <div class="info_div">
+  
+  <div class="float_left info_div">
     <div class="inner_div">
-      <ul>
-        <li><%= link_to "Who should I play?", '/who-should-i-play' %></li>
-        <li><%= link_to "Add player", new_player_path %></li>
-      </ul>
+      <table class="result_table">
+        <tr>
+          <th>Date</th>
+          <th>Week</th>
+          <th>Winner</th>
+          <th>Loser</th>
+          <th>Action</th>
+        </tr>
+        <% @matches.each do |match| %>
+        <tr>
+          <td><%= match.time.getlocal.strftime( "%b %d %l:%M %p" ) %></td>
+          <td class="centered-text"><%= match.week_played %></td>
+          <td>
+            <%= link_to match.winner.name, player_path( match.winner ) %>
+            <%= content_tag :span, :class => match.winner_points >= 0 ? "positive" : "negative" do %>
+            (<%= match.winner_points >= 0 ? "+" : "" %><%= match.winner_points %>)
+            <% end %>
+          </td>
+          <td>
+            <%= link_to match.loser.name, player_path( match.loser ) %>
+            <%= content_tag :span, :class => match.loser_points >= 0 ? "positive" : "negative" do %>
+            (<%= match.loser_points >= 0 ? "+" : "" %><%= match.loser_points %>)
+            <% end %>
+          </td>
+          <td><%= link_to 'delete', match, :confirm => 'Are you sure?', :method => :delete %></td>
+        </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 
-  <%= link_to 'Record match', new_match_path, :class => 'button blue_button' %>
-
-</div>
-
-<div class="float_left info_div">
-  <div class="inner_div">
-    <table class="result_table">
-      <tr>
-        <th>Rank</th>
-        <th></th>
-        <th>Player</th>
-        <th>Points</th>
-        <th>Record</th>
-      </tr>
-      <% @players.each do |player| %>
-      <tr>
-        <td class="centered-text"><%= player.rank %></td>
-        <td><%= image_tag( '/images/' + player.league_name + '.png', :height => 20, :width => 19 ) if !player.league_name.empty? %></td>
-        <td><%= link_to player.name_with_code, player_path( player ) %></td>
-        <td class="centered-text"><%= player.points %></td>
-        <td class="centered-text"><%= player.record_this_season %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<div class="float_left info_div">
-  <div class="inner_div">
-    <table class="result_table">
-      <tr>
-        <th>Date</th>
-        <th>Week</th>
-        <th>Winner</th>
-        <th>Loser</th>
-        <th>Action</th>
-      </tr>
-      <% @matches.each do |match| %>
-      <tr>
-        <td><%= match.time.getlocal.strftime( "%b %d %l:%M %p" ) %></td>
-        <td class="centered-text"><%= match.week_played %></td>
-        <td>
-          <%= link_to match.winner.name, player_path( match.winner ) %>
-          <%= content_tag :span, :class => match.winner_points >= 0 ? "positive" : "negative" do %>
-          (<%= match.winner_points >= 0 ? "+" : "" %><%= match.winner_points %>)
-          <% end %>
-        </td>
-        <td>
-          <%= link_to match.loser.name, player_path( match.loser ) %>
-          <%= content_tag :span, :class => match.loser_points >= 0 ? "positive" : "negative" do %>
-          (<%= match.loser_points >= 0 ? "+" : "" %><%= match.loser_points %>)
-          <% end %>
-        </td>
-        <td><%= link_to 'delete', match, :confirm => 'Are you sure?', :method => :delete %></td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
 </div>
