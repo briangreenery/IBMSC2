@@ -247,3 +247,11 @@ img {
   font-size: 14px;
   font-weight: normal;
 }
+
+#rule_list > li {
+  margin-top: .5em;
+}
+
+#rule_div {
+  width: 750px;
+}
