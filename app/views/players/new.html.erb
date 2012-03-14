@@ -15,9 +15,6 @@
         <div class="attr_name">Player</div><%= select_tag 'player', options_from_collection_for_select( @inactive_players, 'id', 'name' ) %>
       </div>
       <div class="field attr">
-        <div class="attr_name">Starting points</div>
-        <%= text_field_tag 'points', @starting_points %>
-      </div>
       <%= submit_tag "Add player", :class => 'button blue_button attr_save' %>
     <% end %>
   </div>

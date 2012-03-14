@@ -23,12 +23,6 @@
     <div class="attr_name"><%= f.label :league %></div>
     <%= f.select :league, [ ['--', nil], ['Master', 1], ['Diamond', 2], ['Platinum', 3], ['Gold', 4], ['Silver', 5], ['Bronze', 6] ] %>
   </div>
-  <% if !@starting_points.nil? %>
-  <div class="field attr">
-    <div class="attr_name">Starting points</div>
-    <%= text_field_tag 'points', @starting_points %>
-  </div>
-  <% end %>
   <div class="actions attr_save">
     <%= f.submit( ( @starting_points.nil? ? 'Save' : 'Create player' ), :class => 'button blue_button' ) %>
   </div>

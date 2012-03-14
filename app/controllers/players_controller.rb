@@ -33,7 +33,6 @@ class PlayersController < ApplicationController
   # GET /players/new.xml
   def new
     @player = Player.new
-    @starting_points = 1000
 
     @inactive_players = []
 
@@ -51,13 +50,12 @@ class PlayersController < ApplicationController
   # POST /players.xml
   def create
     @player = Player.new(params[:player])
-    @starting_points = params[:points].to_i
 
     @inactive_players = []
 
     respond_to do |format|
       if @player.save
-        Standing.create :tournament => Tournament.current, :player => @player, :points => @starting_points
+        Standing.create :tournament => Tournament.current, :player => @player, :points => Tournament.starting_points
         format.html { redirect_to '/', :notice => 'Player was successfully created.' }
       else
         Player.all( :order => "lower( name )" ).each do |player|
@@ -70,8 +68,7 @@ class PlayersController < ApplicationController
 
   def restore
     @player = Player.find_by_id params[:player]
-    @starting_points = params[:points].to_i
-    Standing.create :tournament => Tournament.current, :player => @player, :points => @starting_points
+    Standing.create :tournament => Tournament.current, :player => @player, :points => Tournament.starting_points
     redirect_to '/'
   end
 

@@ -44,4 +44,8 @@ class Tournament < ActiveRecord::Base
 			10 * ( player_league - opponent_league + 1 )
 		end
 	end
+
+	def self.starting_points
+		1000
+	end
 end
