@@ -18,7 +18,8 @@
         <tr>
           <td><%= match[:tournament] %></td>
           <td><%= match[:week] %></td>
-          <td><%= link_to match[:opponent].name, player_path( match[:opponent] ) %></td>
+          <td><%= image_tag( '/images/' + match[:opponent].league_name + '.png', :height => 20, :width => 19 ) if !match[:opponent].league_name.empty? %>
+              <%= link_to match[:opponent].name, player_path( match[:opponent] ) %></td>
           <td>
             <%= match[:win] ? 'Win' : 'Loss' %>
             <%= content_tag :span, :class => match[:points] >= 0 ? "positive" : "negative" do %>
