@@ -1,8 +1,7 @@
-<%= form_for(@player) do |f| %>
+<%= form_for( @player ) do |f| %>
   <% if @player.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
-
+    <div class="alert alert-error alert-block">
+      <h4>The changes could not be saved</h4>
       <ul>
       <% @player.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,19 +10,21 @@
     </div>
   <% end %>
 
-  <div class="field attr">
-    <div class="attr_name"><%= f.label :name %></div>
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name %>
+    <div class="controls"><%= f.text_field :name %></div>
   </div>
-  <div class="field attr">
-    <div class="attr_name"><%= f.label :character_code %></div>
-    <%= f.text_field :character_code %>
+  <div class="control-group">
+    <%= f.label :character_code %>
+    <div class="controls"><%= f.text_field :character_code %></div>
   </div>
-  <div class="field attr">
-    <div class="attr_name"><%= f.label :league %></div>
-    <%= f.select :league, [ ['--', nil], ['Master', 1], ['Diamond', 2], ['Platinum', 3], ['Gold', 4], ['Silver', 5], ['Bronze', 6] ] %>
+  <div class="control-group">
+    <%= f.label :league %>
+    <div class="controls">
+      <%= f.select :league, [ ['--', nil], ['Master', 1], ['Diamond', 2], ['Platinum', 3], ['Gold', 4], ['Silver', 5], ['Bronze', 6] ] %>
+    </div>
   </div>
-  <div class="actions attr_save">
-    <%= f.submit( ( @starting_points.nil? ? 'Save' : 'Create player' ), :class => 'button blue_button' ) %>
+  <div class="controls">
+    <%= f.submit( ( @starting_points.nil? ? 'Save' : 'Create player' ), :class => 'btn btn-primary' ) %>
   </div>
 <% end %>

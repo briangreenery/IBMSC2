@@ -3,7 +3,10 @@
 
     <div class="span4">
 
-      <h1><%= @player.name %><small><a href="#" class="pull-right btn">Edit</a></small></h1>
+      <h1>
+        <%= @player.name %>
+        <small class="pull-right"><%= link_to "Edit", edit_player_path( @player ), :class => "btn" %></small>
+      </h1>
 
       <div class="well well-small">
         <dl class="dl-horizontal">
