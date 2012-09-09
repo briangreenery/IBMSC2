@@ -42,8 +42,4 @@ class Match < ActiveRecord::Base
 		winner_standing.update_attributes :points => winner_standing.points - winner_points
 		loser_standing.update_attributes :points => loser_standing.points - loser_points
 	end
-
-	def week_played
-		Tournament.week_diff time, tournament.start_date
-	end
 end

@@ -18,13 +18,18 @@
         </dl>
       </div>
 
+    </div>
+  </div>
+  <div class="row">
+    <div class="span5">
+
       <h4>Match History</h4>
       
       <table class="table table-condensed table-striped">
         <thead>
           <tr>
             <th>Tournament</th>
-            <th>Week</th>
+            <th>Date</th>
             <th>Opponent</th>
             <th>Result</th>
           </tr>
@@ -32,7 +37,7 @@
         <% @matches.each do |match| %>
         <tr>
           <td><%= match[:tournament] %></td>
-          <td><%= match[:week] %></td>
+          <td><%= match[:time].getlocal.strftime( "%b %d %l:%M %p" ) %></td>
           <td>
             <%= render 'league_icon', :player => match[:opponent] %>
             <%= link_to match[:opponent].name, player_path( match[:opponent] ) %>
