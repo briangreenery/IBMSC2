@@ -23,8 +23,7 @@ class Tournament < ActiveRecord::Base
 	end
 
 	def self.bonus
-		now = Time.now.getlocal
-		( now.wday == 3 && now.hour >= 12 && now.hour <= 23 ) ? 2 : 1
+		0
 	end
 
 	def self.adjustment( winner_points, loser_points )
