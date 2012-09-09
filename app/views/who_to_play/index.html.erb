@@ -1,21 +1,42 @@
-<div class="info_div float_left">
-  <div class="inner_div">
+<style type="text/css">
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
 
-    <form action="/who-should-i-play" method="get">
-      I am: <%= select_tag 'player', options_from_collection_for_select( @players, 'id', 'name', @player.id ) %>
-      <input type="submit" value="Refresh" />
-    </form>
-    <br/>
-    <table class="result_table">
+<div class="container-fluid">
+  <div class="row-fluid">
+
+    <div class="span2">
+      <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header">Tournament</li>
+          <li><%= link_to "View standings", '/' %></li>
+          <li><%= link_to "Add player", new_player_path %></li>
+          <li><%= link_to "Record game", new_match_path %></li>
+          <li class="active"><%= link_to "Who should I play?", '/who-should-i-play' %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="span4">
+      <h1>Who should I play?</h1>
+      <p>
+        <form action="/who-should-i-play" method="get" class="form-inline">
+          <label>I am:</label> <%= select_tag 'player', options_from_collection_for_select( @players, 'id', 'name', @player.id ) %>
+          <button type="submit" class="btn btn-primary"><i class="icon-refresh icon-white"></i> Refresh</button>
+        </form>
+      </p>
+    <table class="table table-condensed table-striped">
+      <thead>
       <tr>
         <th></th>
         <th>Opponent</th>
         <th>Chance to win</th>
         <th>Win points</th>
         <th>Loss points</th>
-        <th>Handicap</th>
-        <th></th>
       </tr>
+    </thead>
       <% @opponents.each do |opponent| %>
       <tr>
         <td class="centered-text">
@@ -24,15 +45,9 @@
         <td class="centered-text"><%= opponent[:chance] %></td>
           <td class="centered-text"><span class="positive">+<%= opponent[:win] %></span></td>
           <td class="centered-text"><span class="negative"><%= opponent[:lose] %></span></td>
-          <td>
-          <% if opponent[:handicap] != 0 %>
-          <%= content_tag :span do %>
-          <%= opponent[:handicap] > 0 ? 'They play at ' : 'I play at ' %><%= 100 - opponent[:handicap].abs %>%
-          <% end %>
-          <% end %>
-          </td>
         </tr>
       <% end %>
     </table>
   </div>
+</div>
 </div>

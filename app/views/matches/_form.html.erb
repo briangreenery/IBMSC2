@@ -1,4 +1,4 @@
-<%= form_for(@match) do |f| %>
+<%= form_for( @match, :html => { :class => 'form-inline' } ) do |f| %>
   <% if @match.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
@@ -11,13 +11,16 @@
     </div>
   <% end %>
 
-  <div class="attr">
-    <div class="short_attr_name">Winner</div><%= collection_select :match, :winner_id, @players, :id, :name %>
+  <div class="control-group">
+    <label class="control-label">Winner</label>
+    <div class="controls"><%= collection_select :match, :winner_id, @players, :id, :name %></div>
   </div>
-  <div class="attr">
-    <div class="short_attr_name">Loser</div><%= collection_select :match, :loser_id, @players, :id, :name %>
+  <div class="control-group">
+    <label class="control-label">Loser</label>
+    <div class="controls"><%= collection_select :match, :loser_id, @players, :id, :name %></div>
   </div>
+
   <div class="actions short_attr_save">
-    <%= f.submit "Submit", :class => "button blue_button" %>
+    <%= f.submit "Submit", :class => "btn btn-primary" %>
   </div>
 <% end %>

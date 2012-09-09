@@ -1,5 +1,28 @@
-<div class="info_div float_left">
-  <div class="inner_div">
-    <%= render 'form' %>
+<style type="text/css">
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+
+    <div class="span2">
+      <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header">Tournament</li>
+          <li><%= link_to "View standings", '/' %></li>
+          <li><%= link_to "Add player", new_player_path %></li>
+          <li class="active"><%= link_to "Record game", new_match_path %></li>
+          <li><%= link_to "Who should I play?", '/who-should-i-play' %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="span3">
+      <h1>Record game</h1>
+      <%= render 'form' %>
+    </div>
+
   </div>
 </div>

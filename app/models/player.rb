@@ -20,9 +20,9 @@ class Player < ActiveRecord::Base
     standing.nil? ? 0 : standing.points
   end
 
-	def rank
+  def rank
     1 + Standing.count( :conditions => ['tournament_id = ? and points > ?', Tournament.current.id, points] )
-	end
+  end
 
   def record_this_season
     wins = Match.count( :conditions => ['winner_id = ? and tournament_id = ?', id, Tournament.current.id] )
@@ -37,7 +37,6 @@ class Player < ActiveRecord::Base
   end
 
   def league_name
-    return ""         if league.nil?
     return "master"   if league == 1
     return "diamond"  if league == 2
     return "platinum" if league == 3
