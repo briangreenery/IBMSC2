@@ -56,7 +56,7 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.save
         Standing.create :tournament => Tournament.current, :player => @player, :points => Tournament.starting_points
-        format.html { redirect_to '/', :notice => 'Player was successfully created.' }
+        format.html { redirect_to players_path, :notice => 'Player was successfully created.' }
       else
         Player.all( :order => "lower( name )" ).each do |player|
           @inactive_players.push player if player.points == 0
