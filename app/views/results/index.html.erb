@@ -3,31 +3,31 @@
 
     <div class="span4">
       <h1>Standings</h1>
-        <table class="table table-condensed table-striped">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Player</th>
-              <th>Points</th>
-              <th>Record</th>
-            </tr>
-          </thead>
-          <% @players.each do |player| %>
+      <table class="table table-condensed table-striped">
+        <thead>
           <tr>
-            <td><%= player.rank %></td>
-            <td>
-              <%= render 'players/league_icon', :player => player %>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Points</th>
+            <th>Record</th>
+          </tr>
+        </thead>
+        <% @players.each do |player| %>
+        <tr>
+          <td><%= player.rank %></td>
+          <td>
+            <%= render 'players/league_icon', :player => player %>
             <%= link_to player.name_with_code, player_path( player ) %>
           </td>
-            <td><%= player.points %></td>
-            <td><%= player.record_this_season %></td>
-          </tr>
-          <% end %>
-        </table>
+          <td><%= player.points %></td>
+          <td><%= player.record_this_season %></td>
+        </tr>
+        <% end %>
+      </table>
     </div>
 
     <div class="span6">
-      <h1>Games<small class="pull-right"><a href="#" class="btn btn-primary">Record Match</a></small></h1>
+      <h1>Games<small class="pull-right"><%= link_to 'Record match', new_match_path, :class => 'btn btn-primary' %></small></h1>
       <table class="table table-condensed table-striped">
         <thead>
           <tr>
