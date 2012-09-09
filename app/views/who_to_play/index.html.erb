@@ -1,25 +1,7 @@
-<style type="text/css">
-      .sidebar-nav {
-        padding: 9px 0;
-      }
-    </style>
+<div class="container">
+  <div class="row">
 
-<div class="container-fluid">
-  <div class="row-fluid">
-
-    <div class="span2">
-      <div class="well sidebar-nav">
-        <ul class="nav nav-list">
-          <li class="nav-header">Tournament</li>
-          <li><%= link_to "View standings", '/' %></li>
-          <li><%= link_to "Add player", new_player_path %></li>
-          <li><%= link_to "Record game", new_match_path %></li>
-          <li class="active"><%= link_to "Who should I play?", '/who-should-i-play' %></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="span4">
+    <div class="span6">
       <h1>Who should I play?</h1>
       <p>
         <form action="/who-should-i-play" method="get" class="form-inline">
@@ -27,27 +9,27 @@
           <button type="submit" class="btn btn-primary"><i class="icon-refresh icon-white"></i> Refresh</button>
         </form>
       </p>
-    <table class="table table-condensed table-striped">
-      <thead>
-      <tr>
-        <th></th>
-        <th>Opponent</th>
-        <th>Chance to win</th>
-        <th>Win points</th>
-        <th>Loss points</th>
-      </tr>
-    </thead>
-      <% @opponents.each do |opponent| %>
-      <tr>
-        <td class="centered-text">
-        <%= image_tag( '/images/' + opponent[:player].league_name + '.png', :height => 20, :width => 19 ) if !opponent[:player].league_name.empty? %></td>
-        <td><%= link_to opponent[:player].name_with_code, player_path( opponent[:player] ) %></td>
-        <td class="centered-text"><%= opponent[:chance] %></td>
-          <td class="centered-text"><span class="positive">+<%= opponent[:win] %></span></td>
-          <td class="centered-text"><span class="negative"><%= opponent[:lose] %></span></td>
+      <table class="table table-condensed table-striped">
+        <thead>
+          <tr>
+            <th>Opponent</th>
+            <th>Chance to win</th>
+            <th>Win points</th>
+            <th>Loss points</th>
+          </tr>
+        </thead>
+        <% @opponents.each do |opponent| %>
+        <tr>
+          <td>
+            <%= render 'players/league_icon', :player => opponent[:player] %>
+            <%= link_to opponent[:player].name_with_code, player_path( opponent[:player] ) %>
+          </td>
+          <td><%= opponent[:chance] %></td>
+          <td><span class="positive">+<%= opponent[:win] %></span></td>
+          <td><span class="negative"><%= opponent[:lose] %></span></td>
         </tr>
       <% end %>
-    </table>
+      </table>
+    </div>
   </div>
-</div>
 </div>
