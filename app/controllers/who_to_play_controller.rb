@@ -2,28 +2,37 @@ include ActionView::Helpers::NumberHelper
 
 class WhoToPlayController < ApplicationController
   def index
-  	@players = Tournament.current.players
-  	@player = nil
+    tournament = Tournament.current
 
-  	if params.has_key? :player
-  		@player = Player.find_by_id params[:player]
-  	else
-  		@player = @players[rand @players.length]
-  	end
+    @players = tournament.players
+    @player = nil
 
-  	@opponents = []
+    if params.has_key? :player
+      @player = Player.find_by_id params[:player]
+    else
+      @player = @players[rand @players.length]
+    end
 
-  	@players.each do |opponent|
-  		next if opponent.id == @player.id
+    points = {}
+    tournament.standings.each do |standing|
+      points[standing.player_id] = standing.points
+    end
 
-  		@opponents.push(
-  			{ :player => opponent,
-  		      :chance => number_to_percentage( 100 * Tournament.chance_to_win( @player.points, opponent.points ), :precision => 0 ),
-  		      :win => Tournament.adjustment( @player.points, opponent.points ) + Tournament.bonus,
-  		      :lose => -Tournament.adjustment( opponent.points, @player.points ) + Tournament.bonus,
-  		      :handicap => Tournament.handicap( @player.league, opponent.league ) } )
-  	end
+    @opponents = []
 
-  	@players.sort! { |a,b| a.name.downcase <=> b.name.downcase }
+    @players.each do |opponent|
+      next if opponent.id == @player.id
+
+      player_points = points[@player.id]
+      opponent_points = points[opponent.id]
+
+      @opponents.push(
+        { :player => opponent,
+          :chance => number_to_percentage( 100 * Tournament.chance_to_win( player_points, opponent_points ), :precision => 0 ),
+          :win => Tournament.adjustment( player_points, opponent_points ) + Tournament.bonus,
+          :lose => -Tournament.adjustment( opponent_points, player_points ) + Tournament.bonus } )
+    end
+
+    @players.sort! { |a,b| a.name.downcase <=> b.name.downcase }
   end
 end

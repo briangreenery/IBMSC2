@@ -22,7 +22,7 @@ class ResultsController < ApplicationController
     rank = 0
     rank_count = 1
 
-    Standing.where( :tournament_id => tournament.id ).order( 'points DESC' ).each do |standing|
+    tournament.standings.each do |standing|
       if @wins[standing.player_id] > 0 || @losses[standing.player_id] > 0
 
         @players.push standing.player_id
