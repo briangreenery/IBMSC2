@@ -1,25 +1,32 @@
-<h1>Listing tournaments</h1>
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      <h1>Tournaments<small class="pull-right"><%= link_to "Start new tournament", new_tournament_path, :class => "btn btn-primary" %></small></h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Start date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <table class="table table-condensed table-striped">
+        <thead>
+          <th>Name</th>
+          <th>Start Date</th>
+          <th>Participants</th>
+          <th>Winner</th>
+        </thead>
+        <% @tournaments.each do |tournament| %>
+        <tr>
+          <td><%= link_to tournament.name, tournament_path( tournament ) %></td>
+          <td><%= tournament.start_date.getlocal.strftime( "%b %d %Y" ) %></td>
+          <td><%= @participants[tournament.id].size %></td>
+          <td>
+            <% if tournament == @current_tournament %>
+            --
+            <% else %>
+            <%= image_tag( '/images/' + @winners[tournament.id].league_name + '.png' ) %>
+            <%= link_to( @winners[tournament.id].name, player_path( @winners[tournament.id] ) ) %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
 
-<% @tournaments.each do |tournament| %>
-  <tr>
-    <td><%= tournament.name %></td>
-    <td><%= tournament.start_date %></td>
-    <td><%= link_to 'Show', tournament %></td>
-    <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
-    <td><%= link_to 'Destroy', tournament, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Tournament', new_tournament_path %>
+    </div>
+  </div>
+</div>

@@ -1,15 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @tournament.name %>
-</p>
-
-<p>
-  <b>Start date:</b>
-  <%= @tournament.start_date %>
-</p>
-
-
-<%= link_to 'Edit', edit_tournament_path(@tournament) %> |
-<%= link_to 'Back', tournaments_path %>
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      <h1><%= @tournament.name %> <small><%= @tournament == Tournament.current ? 'Standings' : 'Results' %></small></h1>
+    </div>
+  </div>
+</div>
