@@ -13,7 +13,7 @@
         <% @players.each do |player| %>
         <tr>
           <td>
-            <%= image_tag( '/images/' + player.league_name + '.png' ) %>
+            <%= render 'league_icon', :player => player %>
             <%= link_to player.name, player_path( player ) %>
           </td>
           <td><%= player.character_code || '--' %></td>

@@ -19,7 +19,7 @@
             <% if !@winners.has_key? tournament.id %>
             --
             <% else %>
-            <%= image_tag( '/images/' + @winners[tournament.id].league_name + '.png' ) %>
+            <%= render 'players/league_icon', :player => @winners[tournament.id] %>
             <%= link_to( @winners[tournament.id].name, player_path( @winners[tournament.id] ) ) %>
             <% end %>
           </td>

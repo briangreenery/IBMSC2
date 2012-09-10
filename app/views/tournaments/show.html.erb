@@ -16,7 +16,7 @@
         <tr>
           <td><%= @ranks[player_id] %></td>
           <td>
-            <%= image_tag( '/images/' + @leagues[player_id] + '.png' ) %>
+            <%= image_tag( '/images/' + @leagues[player_id] + '.png', :width => 19, :height => 20 ) %>
             <%= link_to @names[player_id], '/players/' + player_id.to_s %>
           </td>
           <td><%= @points[player_id] %></td>
