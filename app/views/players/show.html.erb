@@ -36,7 +36,7 @@
         </thead>
         <% @matches.each do |match| %>
         <tr>
-          <td><%= match[:tournament] %></td>
+          <td><%= link_to match[:tournament].name, tournament_path( match[:tournament] ) %></td>
           <td><%= match[:time].getlocal.strftime( "%b %d %l:%M %p" ) %></td>
           <td>
             <%= render 'league_icon', :player => match[:opponent] %>
