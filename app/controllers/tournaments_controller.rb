@@ -18,7 +18,11 @@ class TournamentsController < ApplicationController
     @winners = {}
     @tournaments.each do |tournament|
       if tournament != @current_tournament
-        @winners[tournament.id] = tournament.standings.first.player
+        highest_standing = tournament.standings.first
+
+        if !highest_standing.nil?
+          @winners[tournament.id] = highest_standing.player
+        end
       end
     end
 
@@ -55,6 +59,7 @@ class TournamentsController < ApplicationController
   # POST /tournaments
   def create
     @tournament = Tournament.new(params[:tournament])
+    @tournament.start_date = DateTime.now
 
     respond_to do |format|
       if @tournament.save

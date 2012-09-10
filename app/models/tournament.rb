@@ -3,6 +3,8 @@ class Tournament < ActiveRecord::Base
   has_many :standings, :order => 'points DESC'
   has_many :players, :through => :standings, :order => 'points DESC'
 
+  validates_presence_of :name, :start_date
+
   def self.week_diff( match_date, start_date )
     diff = match_date - start_date
     1 + ( diff / 7.days ).floor

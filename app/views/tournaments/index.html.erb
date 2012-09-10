@@ -16,7 +16,7 @@
           <td><%= tournament.start_date.getlocal.strftime( "%b %d %Y" ) %></td>
           <td><%= @participants[tournament.id].size %></td>
           <td>
-            <% if tournament == @current_tournament %>
+            <% if !@winners.has_key? tournament.id %>
             --
             <% else %>
             <%= image_tag( '/images/' + @winners[tournament.id].league_name + '.png' ) %>

@@ -1,8 +1,7 @@
 <%= form_for(@tournament) do |f| %>
   <% if @tournament.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tournament.errors.count, "error") %> prohibited this tournament from being saved:</h2>
-
+    <div class="alert alert-error alert-block">
+      <h4>The tournament could not be started</h4>
       <ul>
       <% @tournament.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,15 +10,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="control-group">
+    <%= f.label :name %>
+    <div class="controls"><%= f.text_field :name %></div>
   </div>
-  <div class="field">
-    <%= f.label :start_date %><br />
-    <%= f.datetime_select :start_date %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="controls">
+    <%= f.submit( 'Start tournament', :class => 'btn btn-primary' ) %>
   </div>
 <% end %>
