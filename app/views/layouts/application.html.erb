@@ -13,11 +13,21 @@
         <div class="container">
           <a class="brand" href="/">IBM Starcraft II</a>
           <ul class="nav">
-            <li><a href="/">Standings</a></li>
-            <li><a href="/players">Players</a></li>
-            <li><a href="/tournaments">Tournaments</a></li>
-            <li><a href="/who-should-i-play">Who should I play?</a></li>
-            <li><a href="/about">About</a></li>
+            <%= content_tag :li, :class => ( 'active' if current_page?( :controller => 'results' ) ) do %>
+              <a href="/">Standings</a>
+            <% end %>
+            <%= content_tag :li, :class => ( 'active' if current_page?( :controller => 'players', :action => 'index' ) ) do %>
+              <a href="/players">Players</a>
+            <% end %>
+            <%= content_tag :li, :class => ( 'active' if current_page?( :controller => 'tournaments', :action => 'index' ) ) do %>
+              <a href="/tournaments">Tournaments</a>
+            <% end %>
+            <%= content_tag :li, :class => ( 'active' if current_page?( :controller => 'who_to_play' ) ) do %>
+              <a href="/who-should-i-play">Who should I play?</a>
+            <% end %>
+            <%= content_tag :li, :class => ( 'active' if current_page?( :controller => 'static', :action => 'about' ) ) do %>
+              <a href="/about">About</a>
+            <% end %>
           </ul>
         </div>
       </div>
