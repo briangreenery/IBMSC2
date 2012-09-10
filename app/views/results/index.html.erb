@@ -16,7 +16,7 @@
         <tr>
           <td><%= @ranks[player_id] %></td>
           <td>
-            <%= image_tag( '/images/' + @leagues[player_id] + '.png', :width => 19, :height => 20 ) %>
+            <%= image_tag( '/images/' + @leagues[player_id] + '.png' ) %>
             <%= link_to @names[player_id], '/players/' + player_id.to_s %>
           </td>
           <td><%= @points[player_id] %></td>
@@ -41,12 +41,12 @@
         <tr>
           <td><%= match.time.getlocal.strftime( "%b %d %l:%M %p" ) %></td>
           <td>
-            <%= image_tag( '/images/' + @leagues[match.winner_id] + '.png', :width => 19, :height => 20 ) %>
+            <%= image_tag( '/images/' + @leagues[match.winner_id] + '.png' ) %>
             <%= link_to @names[match.winner_id], '/players/' + match.winner_id.to_s %>
             (+<%= match.winner_points %>)
           </td>
           <td>
-            <%= image_tag( '/images/' + @leagues[match.loser_id] + '.png', :width => 19, :height => 20 ) %>
+            <%= image_tag( '/images/' + @leagues[match.loser_id] + '.png' ) %>
             <%= link_to @names[match.loser_id], '/players/' + match.loser_id.to_s %>
             (<%= match.loser_points %>)
           </td>
