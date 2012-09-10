@@ -2,11 +2,18 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.xml
   def index
+    @games_played = {}
+    @games_played.default = 0
+
+    Match.all.each do |match|
+      @games_played[match.winner_id] += 1
+      @games_played[match.loser_id] += 1
+    end
+
     @players = Player.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @players }
     end
   end
 

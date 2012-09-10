@@ -8,11 +8,16 @@
         <thead>
           <th>Name</th>
           <th>Character Code</th>
+          <th>Games Played</th>
         </thead>
         <% @players.each do |player| %>
         <tr>
-          <td><%= render 'league_icon', :player => player %> <%= link_to player.name, player_path( player ) %></td>
+          <td>
+            <%= render 'league_icon', :player => player %>
+            <%= link_to player.name, player_path( player ) %>
+          </td>
           <td><%= player.character_code || '--' %></td>
+          <td><%= @games_played[player.id] %></td>
         </tr>
         <% end %>
       </table>
