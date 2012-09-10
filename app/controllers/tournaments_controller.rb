@@ -30,6 +30,8 @@ class TournamentsController < ApplicationController
   # GET /tournaments/1
   def show
     @tournament = Tournament.find(params[:id])
+    
+    @players, @names, @leagues, @points, @ranks, @wins, @losses = @tournament.compute_results
 
     respond_to do |format|
       format.html # show.html.erb

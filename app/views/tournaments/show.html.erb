@@ -1,7 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="span6">
-      <h1><%= @tournament.name %> <small><%= @tournament == Tournament.current ? 'Standings' : 'Results' %></small></h1>
+    <div class="span5">
+      <h1><%= @tournament.name %> <small><%= @tournament == Tournament.current ? 'Standings' : 'Final Results' %></small></h1>
+
+      <table class="table table-condensed table-striped">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Player</th>
+            <th>Points</th>
+            <th>Record</th>
+          </tr>
+        </thead>
+        <% @players.each do |player_id| %>
+        <tr>
+          <td><%= @ranks[player_id] %></td>
+          <td>
+            <%= image_tag( '/images/' + @leagues[player_id] + '.png' ) %>
+            <%= link_to @names[player_id], '/players/' + player_id.to_s %>
+          </td>
+          <td><%= @points[player_id] %></td>
+          <td><%= @wins[player_id].to_s + '-' + @losses[player_id].to_s %></td>
+        </tr>
+        <% end %>
+      </table>
+
     </div>
   </div>
 </div>
