@@ -66,12 +66,6 @@ class PlayersController < ApplicationController
     end
   end
 
-  def restore
-    @player = Player.find_by_id params[:player]
-    Standing.create :tournament => Tournament.current, :player => @player, :points => Tournament.starting_points
-    redirect_to '/'
-  end
-
   # PUT /players/1
   # PUT /players/1.xml
   def update
