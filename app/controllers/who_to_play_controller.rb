@@ -2,9 +2,7 @@ include ActionView::Helpers::NumberHelper
 
 class WhoToPlayController < ApplicationController
   def index
-    tournament = Tournament.current
-
-    @players = tournament.players
+    @players = Player.all
     @player = nil
 
     if params.has_key? :player
@@ -14,7 +12,9 @@ class WhoToPlayController < ApplicationController
     end
 
     points = {}
-    tournament.standings.each do |standing|
+    points.default = Tournament.starting_points
+
+    Tournament.current.standings.each do |standing|
       points[standing.player_id] = standing.points
     end
 

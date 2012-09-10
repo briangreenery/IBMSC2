@@ -25,7 +25,7 @@ class MatchesController < ApplicationController
   # GET /matches/new.xml
   def new
     @match = Match.new
-    @players = Tournament.current.players.sort { |a,b| a.name.downcase <=> b.name.downcase }
+    @players = Player.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,15 +37,13 @@ class MatchesController < ApplicationController
   # POST /matches.xml
   def create
     @match = Match.new(params[:match])
-    @players = Tournament.current.players.sort { |a,b| a.name.downcase <=> b.name.downcase }
+    @players = Player.all.sort { |a,b| a.name.downcase <=> b.name.downcase }
 
     respond_to do |format|
       if @match.save
         format.html { redirect_to '/' }
-        format.xml  { render :xml => @match, :status => :created, :location => @match }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @match.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -58,7 +56,6 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to '/' }
-      format.xml  { head :ok }
     end
   end
 end

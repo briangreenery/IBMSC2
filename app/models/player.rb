@@ -17,7 +17,7 @@ class Player < ActiveRecord::Base
 
   def points
     standing = standings.where( :tournament_id => Tournament.current.id ).first
-    standing.nil? ? 0 : standing.points
+    standing.nil? ? Tournament.starting_points : standing.points
   end
 
   def rank
