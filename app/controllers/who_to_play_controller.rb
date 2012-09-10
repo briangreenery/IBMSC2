@@ -34,5 +34,6 @@ class WhoToPlayController < ApplicationController
     end
 
     @players.sort! { |a,b| a.name.downcase <=> b.name.downcase }
+    @opponents.sort! { |a,b| b[:win] <=> a[:win] }
   end
 end
