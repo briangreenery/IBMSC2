@@ -5,15 +5,6 @@ class Tournament < ActiveRecord::Base
 
   validates_presence_of :name, :start_date
 
-  def self.week_diff( match_date, start_date )
-    diff = match_date - start_date
-    1 + ( diff / 7.days ).floor
-  end
-
-  def self.this_week
-    week_diff Time.now.getlocal, Tournament.current.start_date
-  end
-
   def self.current
     Tournament.order( :start_date ).last
   end
@@ -32,18 +23,6 @@ class Tournament < ActiveRecord::Base
     k = 32
     expected = Tournament.chance_to_win winner_points, loser_points
     ( k * ( 1.0 - expected ) ).round
-  end
-
-  def self.handicap( player_league, opponent_league )
-    if player_league.nil? || opponent_league.nil? || ( player_league - opponent_league ).abs < 2
-      return 0
-    end
-
-    if player_league > opponent_league
-      10 * ( player_league - opponent_league - 1 )
-    else
-      10 * ( player_league - opponent_league + 1 )
-    end
   end
 
   def self.starting_points( league )
