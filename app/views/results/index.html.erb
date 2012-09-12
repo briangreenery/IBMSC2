@@ -1,6 +1,12 @@
 <div class="container">
   <div class="row">
 
+    <% if @tournament.nil? %>
+    <div class="span6">
+      No tournaments exist yet. <%= link_to 'Start a tournament', new_tournament_path %> and create some players to begin.
+    </div>
+    <% else %>
+
     <div class="span5">
       <h1>Standings</h1>
       <table class="table table-condensed table-striped">
@@ -57,6 +63,7 @@
         <% end %>
       </table>
     </div>
-
+    
+  <% end %>
   </div>
 </div>
