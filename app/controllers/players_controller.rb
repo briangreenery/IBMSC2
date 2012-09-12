@@ -40,12 +40,6 @@ class PlayersController < ApplicationController
   # GET /players/new.xml
   def new
     @player = Player.new
-
-    @inactive_players = []
-
-    Player.all( :order => "lower( name )" ).each do |player|
-      @inactive_players.push player if player.points == 0
-    end
   end
 
   # GET /players/1/edit
@@ -58,16 +52,10 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(params[:player])
 
-    @inactive_players = []
-
     respond_to do |format|
       if @player.save
-        Standing.create :tournament => Tournament.current, :player => @player, :points => Tournament.starting_points
         format.html { redirect_to players_path, :notice => 'Player was successfully created.' }
       else
-        Player.all( :order => "lower( name )" ).each do |player|
-          @inactive_players.push player if player.points == 0
-        end
         format.html { render :action => "new" }
       end
     end

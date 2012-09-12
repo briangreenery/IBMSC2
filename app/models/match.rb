@@ -22,10 +22,10 @@ class Match < ActiveRecord::Base
     self.tournament = Tournament.current
 
     initial_winner_points = Standing.find_or_create_by_tournament_id_and_player_id(
-      self.tournament_id, self.winner_id, :points => Tournament.starting_points ).points
+      self.tournament_id, self.winner_id, :points => Tournament.starting_points( self.winner.league ) ).points
 
     initial_loser_points = Standing.find_or_create_by_tournament_id_and_player_id(
-      self.tournament_id, self.loser_id, :points => Tournament.starting_points ).points
+      self.tournament_id, self.loser_id, :points => Tournament.starting_points( self.loser.league ) ).points
 
     adjustment = Tournament.adjustment( initial_winner_points, initial_loser_points )
 

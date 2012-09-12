@@ -12,19 +12,17 @@ class WhoToPlayController < ApplicationController
     end
 
     points = {}
-    points.default = Tournament.starting_points
-
     Tournament.current.standings.each do |standing|
       points[standing.player_id] = standing.points
     end
 
-    @opponents = []
+    player_points = points[@player.id] || Tournament.starting_points( @player.league )
 
+    @opponents = []
     @players.each do |opponent|
       next if opponent.id == @player.id
-
-      player_points = points[@player.id]
-      opponent_points = points[opponent.id]
+      
+      opponent_points = points[opponent.id] || Tournament.starting_points( opponent.league )
 
       @opponents.push(
         { :player => opponent,
