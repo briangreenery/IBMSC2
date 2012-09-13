@@ -34,6 +34,18 @@ class Tournament < ActiveRecord::Base
     return 800                 # Bronze
   end
 
+  def self.handicap( player_league, opponent_league )
+    if player_league.nil? || opponent_league.nil? || ( player_league - opponent_league ).abs < 2
+      return 0
+    end
+
+    if player_league > opponent_league
+      10 * ( player_league - opponent_league - 1 )
+    else
+      10 * ( player_league - opponent_league + 1 )
+    end
+  end
+
   def compute_results
     matches = self.matches
 

@@ -30,7 +30,8 @@ class WhoToPlayController < ApplicationController
           { :player => opponent,
             :chance => number_to_percentage( 100 * Tournament.chance_to_win( player_points, opponent_points ), :precision => 0 ),
             :win => Tournament.adjustment( player_points, opponent_points ) + Tournament.bonus,
-            :lose => -Tournament.adjustment( opponent_points, player_points ) + Tournament.bonus } )
+            :lose => -Tournament.adjustment( opponent_points, player_points ) + Tournament.bonus,
+            :handicap => Tournament.handicap( @player.league, opponent.league ) } )
       end
 
       @players.sort! { |a,b| a.name.downcase <=> b.name.downcase }

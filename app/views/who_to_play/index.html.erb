@@ -18,6 +18,7 @@
             <th>Chance to win</th>
             <th>Win points</th>
             <th>Loss points</th>
+            <th>Handicap</th>
           </tr>
         </thead>
         <% @opponents.each do |opponent| %>
@@ -27,8 +28,15 @@
             <%= link_to opponent[:player].name_with_code, player_path( opponent[:player] ) %>
           </td>
           <td><%= opponent[:chance] %></td>
-          <td><span class="positive">+<%= opponent[:win] %></span></td>
-          <td><span class="negative"><%= opponent[:lose] %></span></td>
+          <td>+<%= opponent[:win] %></td>
+          <td><%= opponent[:lose] %></td>
+          <td>
+            <% if opponent[:handicap] != 0 %>
+            <%= content_tag :span do %>
+            <%= opponent[:handicap] > 0 ? 'They play at ' : 'I play at ' %><%= 100 - opponent[:handicap].abs %>%
+            <% end %>
+            <% end %>
+          </td>
         </tr>
         <% end %>
 
