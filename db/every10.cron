@@ -1,0 +1,1 @@
+*/10 * * * * mysqldump ibmsc2_prod | bzip2 > "/opt/ibmsc2/db/backup/$(date +\%d_\%b_\%Y_\%s).bak.bz2"
