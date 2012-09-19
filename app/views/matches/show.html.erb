@@ -3,7 +3,7 @@
     <div class="span12">
       <% if !@map.nil? %>
       <div class="match_map">
-        <%= image_tag( '/images/maps/' + @map + '.jpg' ) %>
+        <%= image_tag( '/images/maps/' + @map + '.jpg', :class => "thumbnail" ) %>
       </div>
       <% end %>
       <div class="match_info">
