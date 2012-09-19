@@ -18,30 +18,19 @@
       <% end %>
 
       <%= form_tag({:action => :upload}, :multipart => true, :class => "form-inline" ) do %>
-
       <div class="control-group">
         <label class="control-label" for="replay_file">Upload replay file</label>
         <div class="controls">
-          <%= file_field_tag 'replay_file', :style => "display:none" %>
-          <div class="input-append">
-            <input id="replay_file_name" type="text" class="fake_file" name="replay_file_name" readonly>
-            <a id="replay_file_button" onclick="$('#replay_file').click();" class="btn">Choose...</a>
-          </div>
+          <%= file_field_tag 'replay_file' %>
         </div>
       </div>
       <div class="control-group">
         <div class="controls">
           <%= submit_tag "Submit", :class => "btn btn-primary" %>
         </div>
-        <% end %>
       </div>
+      <% end %>
+
     </div>
   </div>
 </div>
-
-<script>
-  $('#replay_file').change( function() {
-    var name = $(this).val().split( /[\\/]/ ).pop()
-    $('#replay_file_name').val( name );
-  });
-</script>
