@@ -1,25 +1,29 @@
 <div class="container">
-  <div class="page-header"><h1>How to play</h1></div>
-  <h3>1. Sign up</h3>
-  <p>Get a job at IBM, and then <%= link_to "sign up", new_player_path %> for the tournament.</p>
-  <h3>2. Join channel "IBM" on the American server</h3>
-  <p>Most players are online Wednesday night pacific time.</p>
-  <h3>3. Challenge a player</h3>
-  <p>Challenge a player in the chat channel to a tournament game. The player that you are challenging gets to pick the map. They can pick from any of the current 1v1 ladder maps:
-    <ul>
-        <li>Antiga Shipyard</li>
-        <li>Cloud Kingdom LE</li>
-        <li>Condemned Ridge</li>
-        <li>Daybreak LE</li>
-        <li>Entombed Valley</li>
-        <li>Ohana LE</li>
-        <li>Shakuras Plateau</li>
-        <li>Tal'Darim Altar LE</li>
-      </ul>
-  You can challenge anyone on the ladder as many times as you'd like.
-  </p>
-  <h3>4. Set handicaps</h3>
-  <p>When players across different leagues play one another, the lower leagued player has the option to play the game with a handicap. Use the <%= link_to "Who should I play?", '/who-should-i-play' %> page to figure out who plays at what handicap.</p>
-  <h3>5. Record the result</h3>
-  <p><%= link_to "Record the result", new_match_path %> of the game on this website. Your points and ranking will be adjusted automatically.</p>
+  <div class="row">
+    <div class="span12">
+      <div class="page-header"><h1>How to play</h1></div>
+      <h3>1. Sign up</h3>
+      <p>Get a job at IBM, and then <%= link_to "sign up", new_player_path %> for the tournament.</p>
+      <h3>2. Join channel "IBM" on the American server</h3>
+      <p>Most players are online Wednesday night pacific time.</p>
+      <h3>3. Challenge a player</h3>
+      <p>Challenge a player in the chat channel to a tournament game. The player that you are challenging gets to pick the map. They can pick from any of the current 1v1 ladder maps:
+        <ul>
+          <li>Antiga Shipyard</li>
+          <li>Cloud Kingdom LE</li>
+          <li>Condemned Ridge</li>
+          <li>Daybreak LE</li>
+          <li>Entombed Valley</li>
+          <li>Ohana LE</li>
+          <li>Shakuras Plateau</li>
+          <li>Tal'Darim Altar LE</li>
+        </ul>
+        You can challenge anyone on the ladder as many times as you'd like.
+      </p>
+      <h3>4. Set handicaps</h3>
+      <p>When players across different leagues play one another, the lower leagued player has the option to play the game with a handicap. Use the <%= link_to "Who should I play?", '/who-should-i-play' %> page to figure out who plays at what handicap.</p>
+      <h3>5. Record the result</h3>
+      <p>Record the result of the game by <%= link_to "uploading the replay", new_match_path %> on this website. Your points and ranking will be adjusted automatically.</p>
+    </div>
+  </div>
 </div>

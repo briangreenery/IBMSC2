@@ -5,6 +5,7 @@ Ibmsc2::Application.routes.draw do
 
   root :to => 'results#index'
 
+  match '/matches/upload' => 'matches#upload'
   resources :matches
 
   resources :players
