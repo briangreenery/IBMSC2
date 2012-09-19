@@ -11,6 +11,18 @@ class Match < ActiveRecord::Base
   after_save :add_points
   before_destroy :remove_points
 
+  def opponent( player )
+    player.id == winner_id ? loser : winner
+  end
+
+  def win?( player )
+    player.id == winner_id
+  end
+
+  def points( player )
+    player.id == winner_id ? winner_points : loser_points
+  end
+
   def winner_is_not_loser
     if winner_id == loser_id then
       errors.add_to_base( "A player can't play themself" )

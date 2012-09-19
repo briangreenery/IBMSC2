@@ -20,16 +20,8 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.xml
   def show
-    @player = Player.find(params[:id])
-
-    @matches = Array.new
-    Match.order( 'time DESC, id DESC ' ).where( 'winner_id = ? or loser_id = ?', @player.id, @player.id ).each do |match|
-      @matches.push( { :opponent => ( match.winner_id == @player.id ? match.loser : match.winner ),
-                       :tournament => match.tournament,
-                       :win => ( match.winner_id == @player.id ),
-                       :time => match.time,
-                       :points => ( match.winner_id == @player.id ? match.winner_points : match.loser_points ) } )
-    end
+    @player = Player.find( params[:id] )
+    @matches = Match.order( 'time DESC, id DESC ' ).where( 'winner_id = ? or loser_id = ?', @player.id, @player.id )
 
     respond_to do |format|
       format.html # show.html.erb
