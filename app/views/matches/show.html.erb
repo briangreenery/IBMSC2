@@ -2,34 +2,34 @@
   <div class="row" style="margin-top: 1em;">
     <div class="span12">
       <% if !@map.nil? %>
-      <div style="display:inline-block; vertical-align: top; margin-right: 1em">
-        <%= image_tag( '/images/maps/' + @map + '.jpg', :width => 200, :height => 200 ) %>
+      <div class="match_map">
+        <%= image_tag( '/images/maps/' + @map + '.jpg' ) %>
       </div>
       <% end %>
-      <div style="display:inline-block;">
+      <div class="match_info">
         <dl>
-          <dt style="float:left;">Winner</dt>
-          <dd style="margin-left: 70px">
+          <dt>Winner</dt>
+          <dd>
             <%= link_to @match.winner.name, player_path( @match.winner ) %>
             <% if !@replay_info.nil? %>
             <%= image_tag( '/images/' + @replay_info["winner_race"].downcase + '_small.png' ) %>
             <% end %>
           </dd>
-          <dt style="float:left;">Loser</dt>
-          <dd style="margin-left: 70px">
+          <dt>Loser</dt>
+          <dd>
             <%= link_to @match.loser.name, player_path( @match.loser ) %>
             <% if !@replay_info.nil? %>
             <%= image_tag( '/images/' + @replay_info["loser_race"].downcase + '_small.png' ) %>
             <% end %>
           </dd>
           <% if !@replay_info.nil? %>
-          <dt style="float:left;">Map</dt>
-          <dd style="margin-left: 70px"><%= @replay_info["map"] %></dd>
-          <dt style="float:left;">Length</dt>
-          <dd style="margin-left: 70px"><%= @replay_info["length"] %></dd>
+          <dt>Map</dt>
+          <dd><%= @replay_info["map"] %></dd>
+          <dt>Length</dt>
+          <dd><%= @replay_info["length"] %></dd>
           <% end %>
-          <dt style="float:left;">Date</dt>
-          <dd style="margin-left: 70px"><%= @match.time.getlocal.strftime( "%b %d %l:%M %p" )%></dd>
+          <dt>Date</dt>
+          <dd><%= @match.time.getlocal.strftime( "%b %d %l:%M %p" )%></dd>
         </dl>
         <% if !@match.replay_file.nil? %>
         <%= link_to( '/replays/' + @match.replay_file, :title => 'Download Replay', :class => "btn btn-success" ) do %>

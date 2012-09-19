@@ -1,0 +1,15 @@
+.match_map {
+	display:inline-block; vertical-align: top; margin-right: 1em;
+}
+
+.match_info {
+	display: inline-block;
+}
+
+.match_info dl dt {
+	float: left;
+}
+
+.match_info dl dd {
+	margin-left: 70px;
+}
