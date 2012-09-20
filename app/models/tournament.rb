@@ -26,12 +26,12 @@ class Tournament < ActiveRecord::Base
   end
 
   def self.starting_points( league )
-    return 1300 if league == 1 # Master
-    return 1200 if league == 2 # Diamond
-    return 1100 if league == 3 # Platinum
+    return 1150 if league == 1 # Master
+    return 1100 if league == 2 # Diamond
+    return 1050 if league == 3 # Platinum
     return 1000 if league == 4 # Gold
-    return 900  if league == 5 # Silver
-    return 800                 # Bronze
+    return 950  if league == 5 # Silver
+    return 900                 # Bronze
   end
 
   def self.handicap( player_league, opponent_league )
