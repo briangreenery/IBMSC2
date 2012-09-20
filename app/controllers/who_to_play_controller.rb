@@ -10,9 +10,13 @@ class WhoToPlayController < ApplicationController
 
       if params.has_key? :player
         @player = Player.find_by_id params[:player]
+      elsif !cookies[:who_to_play].nil?
+        @player = Player.find_by_id cookies[:who_to_play]
       else
         @player = @players[rand @players.length]
       end
+
+      cookies[:who_to_play] = @player.id
 
       points = {}
       Tournament.current.standings.each do |standing|
