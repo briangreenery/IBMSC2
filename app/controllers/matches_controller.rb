@@ -21,6 +21,23 @@ class MatchesController < ApplicationController
       @replay_info = ActiveSupport::JSON.decode( @match.replay_info )
 
       @map = @replay_info["map"].downcase.gsub( ' ', '_' )
+
+      [
+        [ 'antiga_shipyard', 'antiga_shipyard' ],
+        [ 'cloud_kingdom', 'cloud_kingdom_le' ],
+        [ 'condemned_ridge', 'condemned_ridge' ],
+        [ 'daybreak', 'daybreak_le' ],
+        [ 'entombed_valley', 'entombed_valley' ],
+        [ 'ohana', 'ohana_le' ],
+        [ 'shakuras_plateau', 'shakuras_plateau' ],
+        [ 'tal\'darim', 'tal\'darim_altar_le' ],
+        [ 'shattered_temple', 'the_shattered_temple' ],
+      ].each do |mapping|
+        if @map.include? mapping[0]
+          @map = mapping[1]
+          break
+        end
+      end
     end
 
     respond_to do |format|
