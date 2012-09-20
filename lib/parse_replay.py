@@ -10,10 +10,6 @@ def main():
 	try:
 		replay = sc2reader.load_replay( path, load_level=2 )
 
-		if replay.type != "1v1":
-			print( "The replay is not a 1v1" )
-			exit( 1 )
-
 		data = {}
 		data["map"] = replay.map_name
 
