@@ -11,6 +11,21 @@ class Match < ActiveRecord::Base
   after_save :add_points
   before_destroy :remove_points
 
+  def ago( time )
+    local_time = time.getlocal
+    local_match_time = self.time.getlocal
+
+    if local_time.year != local_match_time.year
+      return local_match_time.strftime( "%b %d %Y" )
+    end
+
+    if local_time.mon != local_match_time.mon || local_time.day != local_match_time.day
+      return local_match_time.strftime( "%b %d" )
+    end
+
+    return local_match_time.strftime( "%l:%M %p" )
+  end
+
   def opponent( player )
     player.id == winner_id ? loser : winner
   end

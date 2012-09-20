@@ -40,12 +40,12 @@
             <th>Date</th>
             <th>Winner</th>
             <th>Loser</th>
-            <th>Action</th>
+            <th>Details</th>
           </tr>
         </thead>
         <% @matches.each do |match| %>
         <tr>
-          <td><%= link_to match.time.getlocal.strftime( "%b %d %l:%M %p" ), match_path( match ) %></td>
+          <td><span class=""><%= match.ago( Time.now ) %></span></td>
           <td>
             <%= image_tag( '/images/' + @leagues[match.winner_id] + '.png' ) %>
             <%= link_to @names[match.winner_id], '/players/' + match.winner_id.to_s %>
@@ -57,7 +57,7 @@
             (<%= match.loser_points %>)
           </td>
           <td>
-            <%= link_to "Delete", match_path( match ), :class => "btn btn-danger btn-mini confirm-delete", :method => :delete, "data-name" => @names[match.winner_id] + ' vs ' + @names[match.loser_id] %>
+            <%= link_to 'details', match_path( match ) %>
           </td>
         </tr>
         <% end %>

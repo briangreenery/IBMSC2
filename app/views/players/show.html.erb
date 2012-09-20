@@ -32,12 +32,13 @@
             <th>Date</th>
             <th>Opponent</th>
             <th>Result</th>
+            <th>Details</th>
           </tr>
         </thead>
         <% @matches.each do |match| %>
         <tr>
           <td><%= link_to match.tournament.name, tournament_path( match.tournament ) %></td>
-          <td><%= link_to match.time.getlocal.strftime( "%b %d %l:%M %p" ), match_path( match ) %></td>
+          <td><%= match.ago( Time.now ) %></td>
           <td>
             <%= render 'league_icon', :player => match.opponent( @player ) %>
             <%= link_to match.opponent( @player ).name, player_path( match.opponent( @player ) ) %>
@@ -45,6 +46,9 @@
           <td>
             <%= match.win?( @player ) ? 'Win' : 'Loss' %>
             (<%= match.points( @player ) >= 0 ? "+" : "" %><%= match.points( @player ) %>)
+          </td>
+          <td>
+            <%= link_to 'details', match_path( match ) %>
           </td>
         </tr>
         <% end %>
