@@ -16,7 +16,7 @@ class WhoToPlayController < ApplicationController
         @player = @players[rand @players.length]
       end
 
-      cookies[:who_to_play] = @player.id
+      cookies[:who_to_play] = { :value => @player.id, :expires => 1.year.from_now }
 
       points = {}
       Tournament.current.standings.each do |standing|
