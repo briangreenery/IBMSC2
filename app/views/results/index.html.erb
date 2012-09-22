@@ -67,35 +67,3 @@
   <% end %>
   </div>
 </div>
-
-<div class="modal hide" id="confirm-modal">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 id="modal-title">Delete a vs b?</h3>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-danger" id="delete-button">Delete</button>
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-  </div>
-</div>
-
-<%= form_tag '#', :style => "display:none", :id => "delete-form" do %>
-<input type="hidden" name="_method" value="delete" />
-<% end %>
-
-<script>
-  $('.confirm-delete').click(function(e) {
-    e.preventDefault();
-
-    var href = $(this).attr('href');
-    $('#modal-title').text('Delete ' + $(this).data('name') + '?');
-    $('#confirm-modal').data( 'href', href ).modal('show');
-  });
-
-  $('#delete-button').click(function(e) {
-    $('#confirm-modal').modal('hide');
-    var url = $('#confirm-modal').data( 'href' );
-    $('#delete-form').attr( 'action', url );
-    $('#delete-form').submit();
-  });
-</script>
