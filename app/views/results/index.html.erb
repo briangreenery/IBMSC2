@@ -24,12 +24,14 @@
           <td>
             <%= image_tag( '/images/' + @leagues[player_id] + '.png' ) %>
             <%= link_to @names[player_id], '/players/' + player_id.to_s %>
+            <%= '*' if @wins[player_id] + @losses[player_id] >= 5 %>
           </td>
           <td><%= @points[player_id] %></td>
           <td><%= @wins[player_id].to_s + '-' + @losses[player_id].to_s %></td>
         </tr>
         <% end %>
       </table>
+      <p>* Qualified for October tournament by playing 5 games</p>
     </div>
 
     <div class="span7">
