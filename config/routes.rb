@@ -6,6 +6,7 @@ Ibmsc2::Application.routes.draw do
   root :to => 'results#index'
 
   match '/matches/upload' => 'matches#upload'
+  match '/matches/submit-duplicate' => 'matches#submit_duplicate'
   resources :matches
 
   resources :players

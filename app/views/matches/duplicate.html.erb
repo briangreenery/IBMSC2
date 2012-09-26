@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      <h1>Record game</h1>
+      <div class="alert alert-error alert-block">
+        <h4>The game was not saved</h4>
+        <ul>
+          <li>A possible duplicate of this game was uploaded <%= time_ago_in_words( @duplicate.created_at ) %> ago.</li>
+        </ul>
+      </div>
+
+      <p>If you believe that this is not a duplicate, you can submit the game anyway.</p>
+
+      <%= form_tag( '/matches/submit-duplicate', :class => 'form-horizontal' ) do %>
+
+        <%= hidden_field_tag 'unique_id', @unique_id %>
+
+        <div class="control-group">
+          <label class="control-label" for="winner_name">Winner</label>
+          <div class="controls">
+            <div class="input-append">
+              <%= text_field_tag 'winner_name', @match.winner.name, :readonly => true %>
+              <span class="add-on"><%= image_tag Match.race_image( @match.winner_race ) %></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="loser_name">Loser</label>
+          <div class="controls">
+            <div class="input-append">
+              <%= text_field_tag 'loser_name', @match.loser.name, :readonly => true %>
+              <span class="add-on"><%= image_tag Match.race_image( @match.loser_race ) %></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="map">Map</label>
+          <div class="controls">
+            <%= text_field_tag 'map', @match.map, :readonly => true %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label class="control-label" for="length">Length</label>
+          <div class="controls">
+            <%= text_field_tag 'length', @match.pretty_length, :readonly => true %>
+          </div>
+        </div>
+
+        <div class="controls">
+          <%= submit_tag 'Submit anyway', :class => 'btn btn-primary' %>
+          <%= link_to 'Cancel', '/', :class => 'btn' %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

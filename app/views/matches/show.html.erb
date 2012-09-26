@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row" style="margin-top: 1em;">
     <div class="span12">
-      <% if !@map.nil? %>
+      <% if !@match.map.nil? %>
       <div class="match_map">
-        <%= image_tag( '/images/maps/' + @map + '.jpg', :class => "thumbnail" ) %>
+        <%= image_tag( Match.map_image( @match.map ), :class => "thumbnail" ) %>
       </div>
       <% end %>
       <div class="match_info">
@@ -11,22 +11,24 @@
           <dt>Winner</dt>
           <dd>
             <%= link_to @match.winner.name, player_path( @match.winner ) %>
-            <% if !@replay_info.nil? %>
-            <%= image_tag( '/images/' + @replay_info["winner_race"].downcase + '_small.png' ) %>
+            <% if !@match.winner_race.nil? %>
+            <%= image_tag( Match.race_image( @match.winner_race ) ) %>
             <% end %>
           </dd>
           <dt>Loser</dt>
           <dd>
             <%= link_to @match.loser.name, player_path( @match.loser ) %>
-            <% if !@replay_info.nil? %>
-            <%= image_tag( '/images/' + @replay_info["loser_race"].downcase + '_small.png' ) %>
+            <% if !@match.loser_race.nil? %>
+            <%= image_tag( Match.race_image( @match.loser_race ) ) %>
             <% end %>
           </dd>
-          <% if !@replay_info.nil? %>
+          <% if !@match.map.nil? %>
           <dt>Map</dt>
-          <dd><%= @replay_info["map"] %></dd>
+          <dd><%= @match.map %></dd>
+          <% end %>
+          <% if !@match.length.nil? %>
           <dt>Length</dt>
-          <dd><%= @replay_info["length"] %></dd>
+          <dd><%= @match.pretty_length %></dd>
           <% end %>
           <dt>Date</dt>
           <dd><%= @match.time.getlocal.strftime( "%b %d %l:%M %p" )%></dd>

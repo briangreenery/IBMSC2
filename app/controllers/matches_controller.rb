@@ -15,31 +15,6 @@ class MatchesController < ApplicationController
   def show
     @match = Match.find(params[:id])
 
-    @replay_info = nil
-    @map = nil    
-    if !@match.replay_info.nil?
-      @replay_info = ActiveSupport::JSON.decode( @match.replay_info )
-
-      @map = @replay_info["map"].downcase.gsub( ' ', '_' )
-
-      [
-        [ 'antiga_shipyard', 'antiga_shipyard' ],
-        [ 'cloud_kingdom', 'cloud_kingdom_le' ],
-        [ 'condemned_ridge', 'condemned_ridge' ],
-        [ 'daybreak', 'daybreak_le' ],
-        [ 'entombed_valley', 'entombed_valley' ],
-        [ 'ohana', 'ohana_le' ],
-        [ 'shakuras_plateau', 'shakuras_plateau' ],
-        [ 'tal\'darim', 'tal\'darim_altar_le' ],
-        [ 'shattered_temple', 'the_shattered_temple' ],
-      ].each do |mapping|
-        if @map.include? mapping[0]
-          @map = mapping[1]
-          break
-        end
-      end
-    end
-
     respond_to do |format|
       format.html # show.html.erb
     end
@@ -56,57 +31,77 @@ class MatchesController < ApplicationController
     end
   end
 
+  def submit_duplicate
+    create_match_from_replay( params[:unique_id], :allow_duplicates => true )
+  end
+
   def upload
     if params['replay_file'].nil?
-      redirect_to( new_match_path, :alert => "No replay file specified" )
+      redirect_to( new_match_path, :alert => 'No replay file specified' )
       return
     end
 
-    base_name = File.join( 'public/tmp', SecureRandom.hex )
+    unique_id = SecureRandom.hex
 
-    tmp_file = base_name + '.SC2Replay'
-    info_file = base_name + '.info'
-
+    tmp_file = File.join( 'public', 'tmp', unique_id )
     File.open( tmp_file, "wb" ) do |f|
       f.write( params['replay_file'].read )
     end
 
-    parse_successful = system( 'lib/parse_replay.py ' + tmp_file + ' > ' + info_file )
-    replay_info_raw = File.open( info_file ) { |f| f.read }
-    File.delete info_file
+    create_match_from_replay( unique_id )
+  end
 
-    if !parse_successful
-      File.delete tmp_file
-      redirect_to( new_match_path, :alert => replay_info_raw )
+  def create_match_from_replay( unique_id, options = {} )
+    tmp_file = File.join( 'public', 'tmp', unique_id )
+
+    info = Match.parse_replay( tmp_file )
+    if info.nil?
+      redirect_to( new_match_path, :alert => 'The replay could not be parsed' )
+      return
+    end
+    if info['type'] != '1v1'
+      redirect_to( new_match_path, :alert => 'The replay is not a 1v1' )
       return
     end
 
-    replay_info = ActiveSupport::JSON.decode( replay_info_raw )
-
-    winner = Player.find( :first, :conditions => [ "lower(name) = ?", replay_info["winner"].downcase ] )
+    winner = Player.find( :first, :conditions => [ 'lower(name) = ?', info['winner_name'].downcase ] )
     if winner.nil?
-      File.delete tmp_file
-      redirect_to( new_match_path, :alert => "Could not find player " + replay_info["winner"] )
+      redirect_to( new_match_path, :alert => 'Could not find player ' + info['winner_name'] )
       return
     end
 
-    loser = Player.find( :first, :conditions => [ "lower(name) = ?", replay_info["loser"].downcase ] )
+    loser = Player.find( :first, :conditions => [ 'lower(name) = ?', info['loser_name'].downcase ] )
     if loser.nil?
-      File.delete tmp_file
-      redirect_to( new_match_path, :alert => "Could not find player " + replay_info["loser"] )
+      redirect_to( new_match_path, :alert => 'Could not find player ' + info['loser_name'] )
       return
     end
 
-    replay_file = replay_info["winner"] + '_vs_' + replay_info["loser"] + '_' + Time.now.to_i.to_s + '.SC2Replay'
+    replay_file = info['winner_name'] + '_vs_' + info['loser_name'] + '_' + Time.now.to_i.to_s + '.SC2Replay'
 
-    match = Match.new( :winner => winner, :loser => loser, :replay_info => replay_info_raw, :replay_file => replay_file )
+    @match = Match.new(
+      :winner      => winner,
+      :loser       => loser,
+      :replay_file => replay_file,
+      :map         => info['map'],
+      :winner_race => info['winner_race'],
+      :loser_race  => info['loser_race'],
+      :start_time  => info['start_time'],
+      :length      => info['length'],
+      :sha1        => info['sha1'] )
+
+    @duplicate = nil
+    if !options[:allow_duplicates]
+      @duplicate = Match.find_duplicate( @match.sha1, @match.length, @match.start_time )
+    end
 
     respond_to do |format|
-      if match.save
-        FileUtils.mv( tmp_file, File.join( 'public/replays', replay_file ) )
+      if @duplicate
+        @unique_id = unique_id
+        format.html { render :action => "duplicate" }
+      elsif @match.save
+        FileUtils.mv( tmp_file, File.join( 'public', 'replays', replay_file ) )
         format.html { redirect_to '/' }
       else
-        File.delete tmp_file
         format.html { render :action => "new" }
       end
     end

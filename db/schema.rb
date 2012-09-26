@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918071419) do
+ActiveRecord::Schema.define(:version => 20120925062141) do
 
   create_table "maps", :force => true do |t|
     t.string   "name"
@@ -28,8 +28,15 @@ ActiveRecord::Schema.define(:version => 20120918071419) do
     t.integer  "loser_points"
     t.integer  "tournament_id"
     t.string   "replay_file"
-    t.string   "replay_info"
+    t.string   "map"
+    t.string   "winner_race",   :limit => 1
+    t.string   "loser_race",    :limit => 1
+    t.integer  "start_time"
+    t.integer  "length"
+    t.string   "sha1",          :limit => 40
   end
+
+  add_index "matches", ["sha1"], :name => "index_matches_on_sha1"
 
   create_table "players", :force => true do |t|
     t.string   "name"
