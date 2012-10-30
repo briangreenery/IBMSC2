@@ -37,9 +37,6 @@
         <%= link_to( '/replays/' + @match.replay_file, :title => 'Download Replay', :class => "btn btn-success" ) do %>
         <i class="icon-arrow-down icon-white"></i> Download Replay
         <% end %>
-        <%= link_to( match_path( @match ), :title => 'Delete Match', :class => "btn btn-danger confirm-delete", :method => :delete ) do %>
-        <i class="icon-trash icon-white"></i> Delete Match
-        <% end %>
         <% end %>
       </div>
     </div>
