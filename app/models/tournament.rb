@@ -9,29 +9,12 @@ class Tournament < ActiveRecord::Base
     Tournament.order( :start_date ).last
   end
 
-  def self.chance_to_win( winner_points, loser_points )
-    q_winner = 10.0 ** ( winner_points / 400.0 )
-    q_loser = 10.0 ** ( loser_points / 400.0 )
-    q_winner / ( q_winner + q_loser )
-  end
-
-  def self.bonus
-    0
-  end
-
-  def self.adjustment( winner_points, loser_points )
-    k = 32
-    expected = Tournament.chance_to_win winner_points, loser_points
-    ( k * ( 1.0 - expected ) ).round
+  def self.random_adjustment
+    20 + rand( 31 )
   end
 
   def self.starting_points( league )
-    return 1150 if league == 1 # Master
-    return 1100 if league == 2 # Diamond
-    return 1050 if league == 3 # Platinum
-    return 1000 if league == 4 # Gold
-    return 950  if league == 5 # Silver
-    return 900                 # Bronze
+    1000
   end
 
   def self.handicap( player_league, opponent_league )

@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
 
-    <div class="span7">
-      <h1>Who should I play?</h1>
+    <div class="span5">
+      <h1>Handicaps</h1>
 
       <% if @players.empty? %>
       No players exist yet.
@@ -11,13 +11,11 @@
         <label>I am:</label> <%= select_tag 'player', options_from_collection_for_select( @players, 'id', 'name', @player.id ) %>
         <button type="submit" class="btn btn-primary"><i class="icon-refresh icon-white"></i> Refresh</button>
       </form>
+
       <table class="table table-condensed table-striped">
         <thead>
           <tr>
             <th>Opponent</th>
-            <th>Chance to win</th>
-            <th>Win points</th>
-            <th>Loss points</th>
             <th>Handicap</th>
           </tr>
         </thead>
@@ -27,9 +25,6 @@
             <%= render 'players/league_icon', :player => opponent[:player] %>
             <%= link_to opponent[:player].name_with_code, player_path( opponent[:player] ) %>
           </td>
-          <td><%= opponent[:chance] %></td>
-          <td>+<%= opponent[:win] %></td>
-          <td><%= opponent[:lose] %></td>
           <td>
             <% if opponent[:handicap] != 0 %>
             <%= content_tag :span do %>

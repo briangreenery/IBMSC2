@@ -18,29 +18,18 @@ class WhoToPlayController < ApplicationController
 
       cookies[:who_to_play] = { :value => @player.id, :expires => 1.year.from_now }
 
-      points = {}
-      Tournament.current.standings.each do |standing|
-        points[standing.player_id] = standing.points
-      end
-
-      player_points = points[@player.id] || Tournament.starting_points( @player.league )
+      @players.sort! { |a,b| a.name.downcase <=> b.name.downcase }
 
       @players.each do |opponent|
         next if opponent.id == @player.id
 
-        opponent_points = points[opponent.id] || Tournament.starting_points( opponent.league )
-
         @opponents.push(
           { :player => opponent,
-            :chance => number_to_percentage( 100 * Tournament.chance_to_win( player_points, opponent_points ), :precision => 0 ),
-            :win => Tournament.adjustment( player_points, opponent_points ) + Tournament.bonus,
-            :lose => -Tournament.adjustment( opponent_points, player_points ) + Tournament.bonus,
             :handicap => Tournament.handicap( @player.league, opponent.league ) } )
       end
-
-      @players.sort! { |a,b| a.name.downcase <=> b.name.downcase }
-      @opponents.sort! { |a,b| b[:win] <=> a[:win] }
-
     end
+
+    @random_map = [ 'Antiga Shipyard', 'Cloud Kingdom', 'Condemned Ridge', 'Daybreak',
+                    'Entombed Valley', 'Ohana', 'Shakuras Plateau', 'Tal\'Darim Altar' ].choice
   end
 end

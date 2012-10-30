@@ -11,8 +11,8 @@ Ibmsc2::Application.routes.draw do
 
   resources :players
 
-  match '/who-should-i-play' => 'who_to_play#index'
-  match ':action'            => 'static#:action'
+  match '/handicaps' => 'who_to_play#index'
+  match ':action'    => 'static#:action'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
