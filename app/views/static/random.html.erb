@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <h1><%= @random_map %></h1>
+      <h4 class="muted"><%= @random_tag %></h4>
+      <%= image_tag( Match.map_image( @random_map ), :class => "thumbnail" ) %>
+      <br />
+      <blockquote>
+        <p><%= @random_quote[:text] %></p>
+        <small><%= @random_quote[:name] %></small>
+      </blockquote>
+    </div>
+  </div>
+</div>

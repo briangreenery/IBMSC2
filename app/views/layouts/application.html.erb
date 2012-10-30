@@ -27,6 +27,9 @@
             <%= content_tag :li, :class => ( 'active' if current_page?( :controller => 'who_to_play' ) ) do %>
               <a href="/handicaps">Handicaps</a>
             <% end %>
+            <%= content_tag :li, :class => ( 'active' if current_page?( :controller => 'static', :action => 'random' ) ) do %>
+              <a href="/random">Random Map</a>
+            <% end %>
             <%= content_tag :li, :class => ( 'active' if current_page?( :controller => 'static', :action => 'about' ) ) do %>
               <a href="/about">About</a>
             <% end %>

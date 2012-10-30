@@ -28,8 +28,5 @@ class WhoToPlayController < ApplicationController
             :handicap => Tournament.handicap( @player.league, opponent.league ) } )
       end
     end
-
-    @random_map = [ 'Antiga Shipyard', 'Cloud Kingdom', 'Condemned Ridge', 'Daybreak',
-                    'Entombed Valley', 'Ohana', 'Shakuras Plateau', 'Tal\'Darim Altar' ].choice
   end
 end
