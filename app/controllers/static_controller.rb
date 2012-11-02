@@ -71,7 +71,7 @@ class StaticController < ApplicationController
       },
       {
         :text => "I'm a thor! Click me!",
-        :text => "Terran Thor"
+        :name => "Terran Thor"
       }
 
     ].choice
