@@ -44,7 +44,7 @@ class StaticController < ApplicationController
       {
         :text => "Terran micro is silly",
         :name => idra
-      }
+      },
       {
         :text => "Is no problem, I use Special Tactics",
         :name => whitera
