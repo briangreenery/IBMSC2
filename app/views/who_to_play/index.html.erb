@@ -7,7 +7,7 @@
       <% if @players.empty? %>
       No players exist yet.
       <% else %>
-      <form action="/who-should-i-play" method="get" class="form-inline">
+      <form action="/handicaps" method="get" class="form-inline">
         <label>I am:</label> <%= select_tag 'player', options_from_collection_for_select( @players, 'id', 'name', @player.id ) %>
         <button type="submit" class="btn btn-primary"><i class="icon-refresh icon-white"></i> Refresh</button>
       </form>
