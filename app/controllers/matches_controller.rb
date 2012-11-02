@@ -64,15 +64,27 @@ class MatchesController < ApplicationController
       return
     end
 
+    errors = []
+
     winner = Player.find( :first, :conditions => [ 'lower(name) = ?', info['winner_name'].downcase ] )
     if winner.nil?
-      redirect_to( new_match_path, :alert => 'Could not find player ' + info['winner_name'] )
-      return
+      errors.push 'Could not find player ' + info['winner_name']
     end
 
     loser = Player.find( :first, :conditions => [ 'lower(name) = ?', info['loser_name'].downcase ] )
     if loser.nil?
-      redirect_to( new_match_path, :alert => 'Could not find player ' + info['loser_name'] )
+      errors.push 'Could not find player ' + info['loser_name']
+    end
+
+    if info['winner_pick_race'] != 'R'
+      errors.push info['winner_name'] + ' did not pick random'
+    end
+    if info['loser_pick_race'] != 'R'
+      errors.push info['loser_name'] + ' did not pick random'
+    end
+
+    if !errors.empty?
+      redirect_to( new_match_path, :alert => errors )
       return
     end
 
@@ -83,8 +95,8 @@ class MatchesController < ApplicationController
       :loser       => loser,
       :replay_file => replay_file,
       :map         => info['map'],
-      :winner_race => info['winner_race'],
-      :loser_race  => info['loser_race'],
+      :winner_race => info['winner_play_race'],
+      :loser_race  => info['loser_play_race'],
       :start_time  => info['start_time'],
       :length      => info['length'],
       :sha1        => info['sha1'] )

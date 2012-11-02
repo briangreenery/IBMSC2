@@ -13,8 +13,8 @@ class AddReplayInfoToMatches < ActiveRecord::Migration
       replay_info = Match.parse_replay( File.join( 'public', 'replays', match.replay_file ) )
 
       match.update_column :map,         replay_info['map']
-      match.update_column :winner_race, replay_info['winner_race']
-      match.update_column :loser_race,  replay_info['loser_race']
+      match.update_column :winner_race, replay_info['winner_play_race']
+      match.update_column :loser_race,  replay_info['loser_play_race']
       match.update_column :start_time,  replay_info['start_time']
       match.update_column :length,      replay_info['length']
       match.update_column :sha1,        replay_info['sha1']

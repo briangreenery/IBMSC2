@@ -42,6 +42,10 @@ class StaticController < ApplicationController
         :name => idra
       },
       {
+        :text => "Terran micro is silly",
+        :name => idra
+      }
+      {
         :text => "Is no problem, I use Special Tactics",
         :name => whitera
       },
@@ -56,6 +60,18 @@ class StaticController < ApplicationController
       {
         :text => "Forge fast expand or die trying",
         :name => naniwa
+      },
+      {
+        :text => "Battlecrusier operational",
+        :name => "Terran Battlecruiser"
+      },
+      {
+        :text => "My life for Auir",
+        :name => "Protoss Zealot"
+      },
+      {
+        :text => "I'm a thor! Click me!",
+        :text => "Terran Thor"
       }
 
     ].choice

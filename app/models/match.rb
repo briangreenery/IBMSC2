@@ -113,10 +113,16 @@ class Match < ActiveRecord::Base
     self.time = DateTime.now
     self.tournament = Tournament.current
 
+    initial_winner_points = Standing.find_or_create_by_tournament_id_and_player_id(
+      self.tournament_id, self.winner_id, :points => Tournament.starting_points( self.winner.league ) ).points
+
+    initial_loser_points = Standing.find_or_create_by_tournament_id_and_player_id(
+      self.tournament_id, self.loser_id, :points => Tournament.starting_points( self.loser.league ) ).points
+
     adjustment = Tournament.random_adjustment
 
-    self.winner_points = 2*adjustment
-    self.loser_points = -adjustment
+    self.winner_points = ( ( 1.75 + 0.5 * rand ) * adjustment ).to_i
+    self.loser_points = -( ( 0.75 + 0.5 * rand ) * adjustment ).to_i
   end
 
   def add_points

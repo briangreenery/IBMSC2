@@ -18,10 +18,12 @@ data["start_time"] = replay.start_time.strftime( "%s" )
 for player in replay.players:
 	if player.result is "Win":
 		data["winner_name"] = player.name
-		data["winner_race"] = player.play_race[0]
+		data["winner_pick_race"] = player.pick_race[0]
+		data["winner_play_race"] = player.play_race[0]
 	else:
 		data["loser_name"] = player.name
-		data["loser_race"] = player.play_race[0]
+		data["loser_pick_race"] = player.pick_race[0]
+		data["loser_play_race"] = player.play_race[0]
 
 unique_id = replay.map_hash
 

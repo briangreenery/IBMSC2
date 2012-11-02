@@ -8,7 +8,9 @@
         <h4>The match could not be saved</h4>
         <ul>
           <% if flash[:alert] %>
-          <li><%= flash[:alert] %></li>
+          <% flash[:alert].each do |error| %>
+          <li><%= error %></li>
+          <% end %>
           <% end %>
           <% @match.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
