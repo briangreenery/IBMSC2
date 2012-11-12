@@ -9,6 +9,7 @@
             <th>Name</th>
             <th>Start Date</th>
             <th>Participants</th>
+            <th>Games</th>
             <th>Winner</th>
           </tr>
         </thead>
@@ -17,6 +18,7 @@
           <td><%= link_to tournament.name, tournament_path( tournament ) %></td>
           <td><%= tournament.start_date.getlocal.strftime( "%b %d %Y" ) %></td>
           <td><%= @participants[tournament.id].size %></td>
+          <td><%= tournament.matches.size %></td>
           <td>
             <% if !@winners.has_key? tournament.id %>
             --
